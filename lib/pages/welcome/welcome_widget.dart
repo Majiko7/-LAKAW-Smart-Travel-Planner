@@ -125,8 +125,8 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                               ),
                     ),
                     FFButtonWidget(
-                      onPressed: () async {
-                        context.pushNamed('null');
+                      onPressed: () {
+                        print('Button pressed ...');
                       },
                       text: 'Your Journey Starts Here',
                       icon: const Icon(
