@@ -53,7 +53,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SizedBox(
+        body: Container(
           width: MediaQuery.sizeOf(context).width * 1.0,
           height: MediaQuery.sizeOf(context).height * 1.0,
           child: Stack(
@@ -64,7 +64,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 400.0,
                       child: Stack(
@@ -78,7 +78,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                           Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: MediaQuery.sizeOf(context).height * 1.0,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [Colors.transparent, Colors.black],
                                 stops: [0.0, 0.9],
@@ -87,7 +87,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 24.0, 24.0, 24.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -114,7 +114,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      const Icon(
+                                      Icon(
                                         Icons.location_on,
                                         color: Colors.white,
                                         size: 20.0,
@@ -137,7 +137,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                               .bodyLargeFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
                                 ],
                               ),
@@ -150,7 +150,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: const BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(32.0),
@@ -158,7 +158,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             32.0, 24.0, 32.0, 24.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -174,7 +174,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        const Icon(
+                                        Icon(
                                           Icons.star,
                                           color: Color(0xFFFFD700),
                                           size: 24.0,
@@ -215,7 +215,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                             .bodyMediumFamily),
                                               ),
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
+                                      ].divide(SizedBox(width: 8.0)),
                                     ),
                                   ],
                                 ),
@@ -227,10 +227,11 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                   options: FFButtonOptions(
                                     width: 160.0,
                                     height: 48.0,
-                                    padding: const EdgeInsets.all(8.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsets.all(8.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -259,7 +260,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -294,7 +295,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                         .bodyMediumFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(height: 16.0)),
+                                  ].divide(SizedBox(height: 16.0)),
                                 ),
                               ),
                             ),
@@ -306,7 +307,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -367,7 +368,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                         ),
                                       ],
                                     ),
-                                  ].divide(const SizedBox(height: 16.0)),
+                                  ].divide(SizedBox(height: 16.0)),
                                 ),
                               ),
                             ),
@@ -379,7 +380,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -537,9 +538,9 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                             ),
                                           ],
                                         ),
-                                      ].divide(const SizedBox(height: 8.0)),
+                                      ].divide(SizedBox(height: 8.0)),
                                     ),
-                                  ].divide(const SizedBox(height: 16.0)),
+                                  ].divide(SizedBox(height: 16.0)),
                                 ),
                               ),
                             ),
@@ -551,7 +552,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -571,10 +572,10 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                         .headlineSmallFamily),
                                           ),
                                     ),
-                                    SizedBox(
+                                    Container(
                                       height: 180.0,
                                       child: ListView(
-                                        padding: const EdgeInsets.fromLTRB(
+                                        padding: EdgeInsets.fromLTRB(
                                           0.0,
                                           0,
                                           16.0,
@@ -630,7 +631,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                                     .height *
                                                                 1.0,
                                                         decoration:
-                                                            const BoxDecoration(
+                                                            BoxDecoration(
                                                           gradient:
                                                               LinearGradient(
                                                             colors: [
@@ -649,7 +650,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       12.0,
@@ -687,7 +688,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  const Icon(
+                                                                  Icon(
                                                                     Icons.star,
                                                                     color: Color(
                                                                         0xFFFFD700),
@@ -709,7 +710,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                                               GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
                                                                         ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         4.0)),
                                                               ),
@@ -769,7 +770,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                                     .height *
                                                                 1.0,
                                                         decoration:
-                                                            const BoxDecoration(
+                                                            BoxDecoration(
                                                           gradient:
                                                               LinearGradient(
                                                             colors: [
@@ -788,7 +789,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       12.0,
@@ -826,7 +827,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  const Icon(
+                                                                  Icon(
                                                                     Icons.star,
                                                                     color: Color(
                                                                         0xFFFFD700),
@@ -848,7 +849,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                                               GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
                                                                         ),
                                                                   ),
-                                                                ].divide(const SizedBox(
+                                                                ].divide(SizedBox(
                                                                     width:
                                                                         4.0)),
                                                               ),
@@ -862,14 +863,14 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                               ),
                                             ],
                                           ),
-                                        ].divide(const SizedBox(width: 16.0)),
+                                        ].divide(SizedBox(width: 16.0)),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 16.0)),
+                                  ].divide(SizedBox(height: 16.0)),
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(height: 24.0)),
+                          ].divide(SizedBox(height: 24.0)),
                         ),
                       ),
                     ),
@@ -877,7 +878,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                 ),
               ),
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Color(0x83000000), Colors.transparent],
                     stops: [0.0, 1.0],
@@ -893,7 +894,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                       sigmaY: 2.0,
                     ),
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           16.0, 48.0, 16.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -902,8 +903,8 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                           FlutterFlowIconButton(
                             borderRadius: 20.0,
                             buttonSize: 40.0,
-                            fillColor: const Color(0x33FFFFFF),
-                            icon: const Icon(
+                            fillColor: Color(0x33FFFFFF),
+                            icon: Icon(
                               Icons.arrow_back,
                               color: Colors.white,
                               size: 24.0,
@@ -918,21 +919,8 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                               FlutterFlowIconButton(
                                 borderRadius: 20.0,
                                 buttonSize: 40.0,
-                                fillColor: const Color(0x33FFFFFF),
-                                icon: const Icon(
-                                  Icons.share,
-                                  color: Colors.white,
-                                  size: 24.0,
-                                ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
-                              ),
-                              FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                buttonSize: 40.0,
-                                fillColor: const Color(0x33FFFFFF),
-                                icon: const Icon(
+                                fillColor: Color(0x33FFFFFF),
+                                icon: Icon(
                                   Icons.favorite_border,
                                   color: Colors.white,
                                   size: 24.0,
@@ -941,7 +929,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                   print('IconButton pressed ...');
                                 },
                               ),
-                            ].divide(const SizedBox(width: 16.0)),
+                            ].divide(SizedBox(width: 16.0)),
                           ),
                         ],
                       ),

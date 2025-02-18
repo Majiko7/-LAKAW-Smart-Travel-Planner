@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'destinations_horizontal_widget.dart' show DestinationsHorizontalWidget;
+import 'destination_category_widget.dart' show DestinationCategoryWidget;
 import 'package:flutter/material.dart';
 
-class DestinationsHorizontalModel
-    extends FlutterFlowModel<DestinationsHorizontalWidget> {
+class DestinationCategoryModel
+    extends FlutterFlowModel<DestinationCategoryWidget> {
   @override
   void initState(BuildContext context) {}
 

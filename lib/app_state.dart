@@ -30,10 +30,10 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<LatLng> _destinations = [
-    const LatLng(13.1659984, 123.701149),
-    const LatLng(13.1605556, 123.7291667),
-    const LatLng(13.2260225, 123.5546708),
-    const LatLng(13.3524479, 123.6212622)
+    LatLng(13.1659984, 123.701149),
+    LatLng(13.1605556, 123.7291667),
+    LatLng(13.2260225, 123.5546708),
+    LatLng(13.3524479, 123.6212622)
   ];
   List<LatLng> get destinations => _destinations;
   set destinations(List<LatLng> value) {

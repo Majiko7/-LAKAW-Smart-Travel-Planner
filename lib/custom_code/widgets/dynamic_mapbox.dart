@@ -8,11 +8,12 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/flutter_flow/flutter_flow_util.dart'; // Keep this for LatLng
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 
-class DynamicMapbox extends StatefulWidget {
-  const DynamicMapbox({
+class DynamicMapboxWidget extends StatefulWidget {
+  const DynamicMapboxWidget({
     super.key,
     this.width,
     this.height,
@@ -24,21 +25,23 @@ class DynamicMapbox extends StatefulWidget {
 
   final double? width;
   final double? height;
-  final List<LatLng>? points; // FlutterFlow's LatLng type
+  final List<LatLng>? points;
   final String accessToken;
-  final LatLng? startingPoint; // FlutterFlow's LatLng type
+  final LatLng? startingPoint;
   final double startingZoom;
 
   @override
-  State<DynamicMapbox> createState() => _DynamicMapboxState();
+  State<DynamicMapboxWidget> createState() => _DynamicMapboxWidgetState();
 }
 
-class _DynamicMapboxState extends State<DynamicMapbox> {
+class _DynamicMapboxWidgetState extends State<DynamicMapboxWidget> {
   List<Marker> allMarkers = [];
+  late MapController mapController;
 
   @override
   void initState() {
     super.initState();
+    mapController = MapController();
     addMarkersToMap(widget.points);
   }
 
@@ -53,8 +56,7 @@ class _DynamicMapboxState extends State<DynamicMapbox> {
             ),
             width: 30,
             height: 30,
-            child: Icon(
-              // Use "child" instead of "builder"
+            child: const Icon(
               Icons.location_pin,
               color: Colors.red,
               size: 30,
@@ -67,27 +69,43 @@ class _DynamicMapboxState extends State<DynamicMapbox> {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterMap(
-      options: MapOptions(
-        // Use "initialCenter" and "initialZoom" for newer versions of flutter_map
-        initialCenter: widget.startingPoint != null
-            ? ll.LatLng(
-                widget.startingPoint!.latitude,
-                widget.startingPoint!.longitude,
-              )
-            : ll.LatLng(13.1333, 123.7333), // Default to Albay
-        initialZoom: widget.startingZoom,
+    return SizedBox(
+      width: widget.width ?? MediaQuery.of(context).size.width,
+      height: widget.height ?? MediaQuery.of(context).size.height,
+      child: FlutterMap(
+        mapController: mapController,
+        options: MapOptions(
+          initialCenter: widget.startingPoint != null
+              ? ll.LatLng(
+                  widget.startingPoint!.latitude,
+                  widget.startingPoint!.longitude,
+                )
+              : const ll.LatLng(13.1333, 123.7333),
+          initialZoom: widget.startingZoom,
+          interactionOptions: const InteractionOptions(
+            enableScrollWheel: true,
+            enableMultiFingerGestureRace: true,
+          ),
+        ),
+        children: [
+          TileLayer(
+            urlTemplate:
+                'https://api.mapbox.com/styles/v1/majiko27/cm6yz30te002y01sra0b4hbu0/tiles/256/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+            additionalOptions: {
+              'accessToken': widget.accessToken,
+            },
+          ),
+          MarkerLayer(
+            markers: allMarkers,
+          ),
+        ],
       ),
-      // Use "children" instead of "layers" for newer versions of flutter_map
-      children: [
-        TileLayer(
-          urlTemplate:
-              'https://api.mapbox.com/styles/v1/majiko27/cm6yz30te002y01sra0b4hbu0/tiles/256/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
-        ),
-        MarkerLayer(
-          markers: allMarkers,
-        ),
-      ],
     );
+  }
+
+  @override
+  void dispose() {
+    mapController.dispose();
+    super.dispose();
   }
 }

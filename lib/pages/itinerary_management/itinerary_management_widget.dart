@@ -54,7 +54,7 @@ class _ItineraryManagementWidgetState extends State<ItineraryManagementWidget> {
             color: FlutterFlowTheme.of(context).primaryBackground,
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -94,7 +94,7 @@ class _ItineraryManagementWidgetState extends State<ItineraryManagementWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Container(
                         width: 191.0,
                         height: 29.0,
@@ -107,9 +107,9 @@ class _ItineraryManagementWidgetState extends State<ItineraryManagementWidget> {
                             width: 1.5,
                           ),
                         ),
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 10.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -117,8 +117,8 @@ class _ItineraryManagementWidgetState extends State<ItineraryManagementWidget> {
                             children: [
                               Expanded(
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: SizedBox(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Container(
                                     width: 200.0,
                                     child: TextFormField(
                                       controller: _model.textController,
@@ -158,7 +158,7 @@ class _ItineraryManagementWidgetState extends State<ItineraryManagementWidget> {
                                                           .labelMediumFamily),
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1.0,
                                           ),
@@ -166,7 +166,7 @@ class _ItineraryManagementWidgetState extends State<ItineraryManagementWidget> {
                                               BorderRadius.circular(8.0),
                                         ),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1.0,
                                           ),
@@ -240,7 +240,7 @@ class _ItineraryManagementWidgetState extends State<ItineraryManagementWidget> {
                                 FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
-                  ].divide(const SizedBox(width: 10.0)),
+                  ].divide(SizedBox(width: 10.0)),
                 ),
               ],
             ),

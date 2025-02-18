@@ -25,7 +25,7 @@ class GetDestinationNameCall {
       apiUrl: 'https://ljhpejoalrogchgkzsfo.supabase.co/rest/v1/Destinations',
       callType: ApiCallType.GET,
       headers: {
-        'apiKey': '$apiKey',
+        'apiKey': '${apiKey}',
       },
       params: {
         'offset': offset,

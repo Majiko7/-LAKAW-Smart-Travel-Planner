@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,81 +123,77 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                child: Material(
-                  color: Colors.transparent,
-                  elevation: 2.0,
-                  child: Container(
-                    width: MediaQuery.sizeOf(context).width * 1.0,
-                    height: 80.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          16.0, 24.0, 16.0, 24.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                buttonSize: 40.0,
-                                fillColor: Colors.transparent,
-                                icon: Icon(
-                                  Icons.arrow_back,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
+              Material(
+                color: Colors.transparent,
+                elevation: 2.0,
+                child: Container(
+                  width: MediaQuery.sizeOf(context).width * 1.091,
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            FlutterFlowIconButton(
+                              borderRadius: 20.0,
+                              buttonSize: 40.0,
+                              fillColor: Colors.transparent,
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
                               ),
-                              Text(
-                                'Route Planner',
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .headlineSmallFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmallFamily),
-                                    ),
-                              ),
-                            ].divide(const SizedBox(width: 16.0)),
-                          ),
-                          FlutterFlowIconButton(
-                            borderRadius: 20.0,
-                            buttonSize: 40.0,
-                            fillColor: Colors.transparent,
-                            icon: Icon(
-                              Icons.more_vert,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
+                              onPressed: () {
+                                print('IconButton pressed ...');
+                              },
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
+                            Text(
+                              'Route Planner',
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
+                                  ),
+                            ),
+                          ].divide(SizedBox(width: 16.0)),
+                        ),
+                        FlutterFlowIconButton(
+                          borderRadius: 20.0,
+                          buttonSize: 40.0,
+                          fillColor: Colors.transparent,
+                          icon: Icon(
+                            Icons.more_vert,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
-                      ),
+                          onPressed: () {
+                            print('IconButton pressed ...');
+                          },
+                        ),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                child: SizedBox(
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                child: Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -230,36 +227,36 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                         .bodyMediumFamily),
                               ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0xFFE0E0E0),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           errorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           focusedErrorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF5F5F5),
-                          suffixIcon: const Icon(
+                          fillColor: Color(0xFFF5F5F5),
+                          suffixIcon: Icon(
                             Icons.place,
                           ),
                         ),
@@ -304,36 +301,36 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                         .bodyMediumFamily),
                               ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0xFFE0E0E0),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           errorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           focusedErrorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF5F5F5),
-                          suffixIcon: const Icon(
+                          fillColor: Color(0xFFF5F5F5),
+                          suffixIcon: Icon(
                             Icons.place,
                           ),
                         ),
@@ -357,15 +354,15 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                               print('Button pressed ...');
                             },
                             text: 'Calculate Route',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.route,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               width: 200.0,
                               height: 50.0,
-                              padding: const EdgeInsets.all(8.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsets.all(8.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -389,17 +386,17 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                               print('Button pressed ...');
                             },
                             text: 'Clear',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.clear,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               width: 120.0,
                               height: 50.0,
-                              padding: const EdgeInsets.all(8.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsets.all(8.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFFF5F5F5),
+                              color: Color(0xFFF5F5F5),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -419,12 +416,12 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(height: 16.0)),
+                    ].divide(SizedBox(height: 16.0)),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                 child: Material(
                   color: Colors.transparent,
                   elevation: 2.0,
@@ -435,7 +432,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                     width: MediaQuery.sizeOf(context).width * 1.0,
                     height: 400.0,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF5F5F5),
+                      color: Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     child: Stack(
@@ -452,11 +449,11 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                         Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           height: MediaQuery.sizeOf(context).height * 1.0,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Color(0x33000000),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -464,8 +461,8 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                               children: [
                                 Container(
                                   height: 300.0,
-                                  decoration: const BoxDecoration(),
-                                  child: SizedBox(
+                                  decoration: BoxDecoration(),
+                                  child: Container(
                                     width: 300.0,
                                     height: 300.0,
                                     child: custom_widgets.DynamicMapbox(
@@ -503,7 +500,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 20.0),
                 child: Material(
                   color: Colors.transparent,
                   elevation: 2.0,
@@ -513,11 +510,11 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                   child: Container(
                     width: MediaQuery.sizeOf(context).width * 1.0,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF5F5F5),
+                      color: Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -625,7 +622,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                           Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: 1.0,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               color: Color(0xFFE0E0E0),
                             ),
                           ),
@@ -660,7 +657,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Text(
                                         '1',
                                         textAlign: TextAlign.center,
@@ -701,7 +698,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                                       .bodyMediumFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 12.0)),
+                                ].divide(SizedBox(width: 12.0)),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -715,7 +712,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Text(
                                         '2',
                                         textAlign: TextAlign.center,
@@ -756,7 +753,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                                       .bodyMediumFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 12.0)),
+                                ].divide(SizedBox(width: 12.0)),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -770,7 +767,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Text(
                                         '3',
                                         textAlign: TextAlign.center,
@@ -811,17 +808,17 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                                       .bodyMediumFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 12.0)),
+                                ].divide(SizedBox(width: 12.0)),
                               ),
-                            ].divide(const SizedBox(height: 12.0)),
+                            ].divide(SizedBox(height: 12.0)),
                           ),
-                        ].divide(const SizedBox(height: 16.0)),
+                        ].divide(SizedBox(height: 16.0)),
                       ),
                     ),
                   ),
                 ),
               ),
-            ].divide(const SizedBox(height: 24.0)),
+            ].divide(SizedBox(height: 24.0)),
           ),
         ),
       ),

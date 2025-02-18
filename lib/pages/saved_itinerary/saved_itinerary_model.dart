@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'destinations_widget.dart' show DestinationsWidget;
+import 'saved_itinerary_widget.dart' show SavedItineraryWidget;
 import 'package:flutter/material.dart';
 
-class DestinationsModel extends FlutterFlowModel<DestinationsWidget> {
+class SavedItineraryModel extends FlutterFlowModel<SavedItineraryWidget> {
   @override
   void initState(BuildContext context) {}
 

@@ -9,7 +9,7 @@ class ItinerariesTable extends SupabaseTable<ItinerariesRow> {
 }
 
 class ItinerariesRow extends SupabaseDataRow {
-  ItinerariesRow(super.data);
+  ItinerariesRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => ItinerariesTable();
@@ -17,8 +17,8 @@ class ItinerariesRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  String? get userId => getField<String>('user_id');
-  set userId(String? value) => setField<String>('user_id', value);
+  String get userId => getField<String>('user_id')!;
+  set userId(String value) => setField<String>('user_id', value);
 
   String? get name => getField<String>('name');
   set name(String? value) => setField<String>('name', value);

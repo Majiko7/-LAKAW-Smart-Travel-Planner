@@ -9,7 +9,7 @@ class UsersTable extends SupabaseTable<UsersRow> {
 }
 
 class UsersRow extends SupabaseDataRow {
-  UsersRow(super.data);
+  UsersRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => UsersTable();
@@ -20,11 +20,11 @@ class UsersRow extends SupabaseDataRow {
   DateTime get createdAt => getField<DateTime>('created_at')!;
   set createdAt(DateTime value) => setField<DateTime>('created_at', value);
 
-  int get username => getField<int>('username')!;
-  set username(int value) => setField<int>('username', value);
+  String get username => getField<String>('username')!;
+  set username(String value) => setField<String>('username', value);
 
-  int get email => getField<int>('email')!;
-  set email(int value) => setField<int>('email', value);
+  String get email => getField<String>('email')!;
+  set email(String value) => setField<String>('email', value);
 
   String get password => getField<String>('password')!;
   set password(String value) => setField<String>('password', value);

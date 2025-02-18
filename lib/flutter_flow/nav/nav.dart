@@ -9,6 +9,7 @@ import '/backend/schema/structs/index.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -78,48 +79,90 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const SignUpWidget() : const SignUpWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : WelcomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const SignUpWidget() : const SignUpWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : WelcomeWidget(),
         ),
         FFRoute(
           name: 'Welcome',
           path: '/welcome',
-          builder: (context, params) => const WelcomeWidget(),
+          builder: (context, params) => WelcomeWidget(),
         ),
         FFRoute(
           name: 'SignIn',
           path: '/signIn',
-          builder: (context, params) => const SignInWidget(),
+          builder: (context, params) => SignInWidget(),
         ),
         FFRoute(
           name: 'SignUp',
           path: '/signUp',
-          builder: (context, params) => const SignUpWidget(),
+          builder: (context, params) => SignUpWidget(),
         ),
         FFRoute(
           name: 'ItineraryManagement',
           path: '/itineraryManagement',
-          builder: (context, params) => const ItineraryManagementWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'ItineraryManagement')
+              : ItineraryManagementWidget(),
         ),
         FFRoute(
           name: 'RouteOptimization',
           path: '/routeOptimization',
-          builder: (context, params) => const RouteOptimizationWidget(),
+          builder: (context, params) => RouteOptimizationWidget(),
         ),
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(),
         ),
         FFRoute(
           name: 'DestinationDetails',
           path: '/destinationDetails',
-          builder: (context, params) => const DestinationDetailsWidget(),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: DestinationDetailsWidget(),
+          ),
+        ),
+        FFRoute(
+          name: 'Destinations',
+          path: '/destinations',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Destinations')
+              : DestinationsWidget(),
+        ),
+        FFRoute(
+          name: 'DestinationCategory',
+          path: '/destinationCategory',
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: DestinationCategoryWidget(),
+          ),
+        ),
+        FFRoute(
+          name: 'Settings',
+          path: '/settings',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Settings')
+              : NavBarPage(
+                  initialPage: 'Settings',
+                  page: SettingsWidget(),
+                ),
+        ),
+        FFRoute(
+          name: 'SavedItinerary',
+          path: '/savedItinerary',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'SavedItinerary')
+              : NavBarPage(
+                  initialPage: 'SavedItinerary',
+                  page: SavedItineraryWidget(),
+                ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -290,7 +333,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/signUp';
+            return '/welcome';
           }
           return null;
         },
@@ -357,7 +400,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

@@ -80,14 +80,14 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     color: FlutterFlowTheme.of(context).primaryBackground,
                     size: 40.0,
                   ),
-                ].divide(const SizedBox(width: 7.0)),
+                ].divide(SizedBox(width: 7.0)),
               ),
               Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 0.3,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 35.0,
                       color: Color(0x33000000),
@@ -98,7 +98,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                       spreadRadius: 10.0,
                     )
                   ],
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(30.0),
@@ -125,22 +125,22 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                               ),
                     ),
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        context.pushNamed('SignUp');
                       },
                       text: 'Your Journey Starts Here',
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.airplanemode_active,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
                         width: MediaQuery.sizeOf(context).width * 0.75,
                         height: MediaQuery.sizeOf(context).height * 0.05,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconAlignment: IconAlignment.end,
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).secondary,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -157,10 +157,10 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                     ),
-                  ].divide(const SizedBox(height: 20.0)),
+                  ].divide(SizedBox(height: 20.0)),
                 ),
               ),
-            ].addToStart(const SizedBox(height: 0.0)),
+            ].addToStart(SizedBox(height: 0.0)),
           ),
         ),
       ),
