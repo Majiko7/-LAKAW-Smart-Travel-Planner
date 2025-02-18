@@ -9,7 +9,6 @@ import '/backend/schema/structs/index.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
-import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -79,13 +78,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : WelcomeWidget(),
+          appStateNotifier.loggedIn ? HomePageWidget() : WelcomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : WelcomeWidget(),
+              appStateNotifier.loggedIn ? HomePageWidget() : WelcomeWidget(),
         ),
         FFRoute(
           name: 'Welcome',
@@ -105,9 +104,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ItineraryManagement',
           path: '/itineraryManagement',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'ItineraryManagement')
-              : ItineraryManagementWidget(),
+          builder: (context, params) => ItineraryManagementWidget(),
         ),
         FFRoute(
           name: 'RouteOptimization',
@@ -117,52 +114,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
+          builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
           name: 'DestinationDetails',
           path: '/destinationDetails',
-          builder: (context, params) => NavBarPage(
-            initialPage: '',
-            page: DestinationDetailsWidget(),
-          ),
+          builder: (context, params) => DestinationDetailsWidget(),
         ),
         FFRoute(
           name: 'Destinations',
           path: '/destinations',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Destinations')
-              : DestinationsWidget(),
+          builder: (context, params) => DestinationsWidget(),
         ),
         FFRoute(
           name: 'DestinationCategory',
           path: '/destinationCategory',
-          builder: (context, params) => NavBarPage(
-            initialPage: '',
-            page: DestinationCategoryWidget(),
-          ),
+          builder: (context, params) => DestinationCategoryWidget(),
         ),
         FFRoute(
           name: 'Settings',
           path: '/settings',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Settings')
-              : NavBarPage(
-                  initialPage: 'Settings',
-                  page: SettingsWidget(),
-                ),
+          builder: (context, params) => SettingsWidget(),
         ),
         FFRoute(
           name: 'SavedItinerary',
           path: '/savedItinerary',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'SavedItinerary')
-              : NavBarPage(
-                  initialPage: 'SavedItinerary',
-                  page: SavedItineraryWidget(),
-                ),
+          builder: (context, params) => SavedItineraryWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
