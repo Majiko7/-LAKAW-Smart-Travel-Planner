@@ -16,7 +16,21 @@ export 'destination_details_model.dart';
 /// Itinerary" button for quick planning. Use a visually appealing layout with
 /// a hero image at the top and clear, readable text below.
 class DestinationDetailsWidget extends StatefulWidget {
-  const DestinationDetailsWidget({super.key});
+  const DestinationDetailsWidget({
+    super.key,
+    required this.id,
+    this.name,
+    required this.municipalCity,
+    required this.barangay,
+  });
+
+  final int? id;
+  final String? name;
+  final String? municipalCity;
+  final String? barangay;
+
+  static String routeName = 'DestinationDetails';
+  static String routePath = '/destinationDetails';
 
   @override
   State<DestinationDetailsWidget> createState() =>
@@ -95,7 +109,10 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Mayon Skyline View Deck',
+                                    valueOrDefault<String>(
+                                      widget.name,
+                                      'DistanationName',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .displaySmall
                                         .override(
@@ -120,7 +137,10 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                         size: 20.0,
                                       ),
                                       Text(
-                                        'Tabaco City, Albay',
+                                        valueOrDefault<String>(
+                                          widget.municipalCity,
+                                          'destinationLocation',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(

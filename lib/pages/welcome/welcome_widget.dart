@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,9 @@ export 'welcome_model.dart';
 
 class WelcomeWidget extends StatefulWidget {
   const WelcomeWidget({super.key});
+
+  static String routeName = 'Welcome';
+  static String routePath = '/welcome';
 
   @override
   State<WelcomeWidget> createState() => _WelcomeWidgetState();
@@ -126,7 +130,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        context.pushNamed('SignUp');
+                        context.pushNamed(SignUpWidget.routeName);
                       },
                       text: 'Your Journey Starts Here',
                       icon: Icon(

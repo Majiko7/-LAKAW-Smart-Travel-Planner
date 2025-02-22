@@ -8,9 +8,11 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -78,68 +80,109 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : WelcomeWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : WelcomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : WelcomeWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : WelcomeWidget(),
         ),
         FFRoute(
-          name: 'Welcome',
-          path: '/welcome',
+          name: WelcomeWidget.routeName,
+          path: WelcomeWidget.routePath,
           builder: (context, params) => WelcomeWidget(),
         ),
         FFRoute(
-          name: 'SignIn',
-          path: '/signIn',
+          name: SignInWidget.routeName,
+          path: SignInWidget.routePath,
           builder: (context, params) => SignInWidget(),
         ),
         FFRoute(
-          name: 'SignUp',
-          path: '/signUp',
+          name: SignUpWidget.routeName,
+          path: SignUpWidget.routePath,
           builder: (context, params) => SignUpWidget(),
         ),
         FFRoute(
-          name: 'ItineraryManagement',
-          path: '/itineraryManagement',
-          builder: (context, params) => ItineraryManagementWidget(),
+          name: ItineraryManagementWidget.routeName,
+          path: ItineraryManagementWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'ItineraryManagement')
+              : ItineraryManagementWidget(),
         ),
         FFRoute(
-          name: 'RouteOptimization',
-          path: '/routeOptimization',
+          name: RouteOptimizationWidget.routeName,
+          path: RouteOptimizationWidget.routePath,
           builder: (context, params) => RouteOptimizationWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => HomePageWidget(),
+          name: HomePageWidget.routeName,
+          path: HomePageWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(
+                  guidetitle: params.getParam(
+                    'guidetitle',
+                    ParamType.String,
+                  ),
+                ),
         ),
         FFRoute(
-          name: 'DestinationDetails',
-          path: '/destinationDetails',
-          builder: (context, params) => DestinationDetailsWidget(),
+          name: DestinationDetailsWidget.routeName,
+          path: DestinationDetailsWidget.routePath,
+          builder: (context, params) => DestinationDetailsWidget(
+            id: params.getParam(
+              'id',
+              ParamType.int,
+            ),
+            name: params.getParam(
+              'name',
+              ParamType.String,
+            ),
+            municipalCity: params.getParam(
+              'municipalCity',
+              ParamType.String,
+            ),
+            barangay: params.getParam(
+              'barangay',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
-          name: 'Destinations',
-          path: '/destinations',
-          builder: (context, params) => DestinationsWidget(),
+          name: DestinationsWidget.routeName,
+          path: DestinationsWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Destinations')
+              : NavBarPage(
+                  initialPage: 'Destinations',
+                  page: DestinationsWidget(),
+                ),
         ),
         FFRoute(
-          name: 'DestinationCategory',
-          path: '/destinationCategory',
+          name: DestinationCategoryWidget.routeName,
+          path: DestinationCategoryWidget.routePath,
           builder: (context, params) => DestinationCategoryWidget(),
         ),
         FFRoute(
-          name: 'Settings',
-          path: '/settings',
-          builder: (context, params) => SettingsWidget(),
+          name: SavedItineraryWidget.routeName,
+          path: SavedItineraryWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'SavedItinerary')
+              : NavBarPage(
+                  initialPage: 'SavedItinerary',
+                  page: SavedItineraryWidget(),
+                ),
         ),
         FFRoute(
-          name: 'SavedItinerary',
-          path: '/savedItinerary',
-          builder: (context, params) => SavedItineraryWidget(),
+          name: SettingsWidget.routeName,
+          path: SettingsWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Settings')
+              : NavBarPage(
+                  initialPage: 'Settings',
+                  page: SettingsWidget(),
+                ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

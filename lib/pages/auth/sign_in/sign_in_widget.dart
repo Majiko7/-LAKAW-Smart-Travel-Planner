@@ -2,6 +2,7 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'sign_in_model.dart';
@@ -9,6 +10,9 @@ export 'sign_in_model.dart';
 
 class SignInWidget extends StatefulWidget {
   const SignInWidget({super.key});
+
+  static String routeName = 'SignIn';
+  static String routePath = '/signIn';
 
   @override
   State<SignInWidget> createState() => _SignInWidgetState();
@@ -401,7 +405,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       context.pop();
                                     }
                                     context.pushNamedAuth(
-                                      'HomePage',
+                                      HomePageWidget.routeName,
                                       context.mounted,
                                       extra: <String, dynamic>{
                                         kTransitionInfoKey: TransitionInfo(
@@ -467,7 +471,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed('SignUp');
+                                  context.pushNamed(SignUpWidget.routeName);
                                 },
                                 text: 'Sign Up',
                                 options: FFButtonOptions(

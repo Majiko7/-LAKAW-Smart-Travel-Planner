@@ -9,6 +9,9 @@ export 'itinerary_management_model.dart';
 class ItineraryManagementWidget extends StatefulWidget {
   const ItineraryManagementWidget({super.key});
 
+  static String routeName = 'ItineraryManagement';
+  static String routePath = '/itineraryManagement';
+
   @override
   State<ItineraryManagementWidget> createState() =>
       _ItineraryManagementWidgetState();

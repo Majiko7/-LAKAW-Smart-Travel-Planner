@@ -41,6 +41,36 @@ class GetDestinationNameCall {
   }
 }
 
+class GetTravelGuidesCall {
+  static Future<ApiCallResponse> call({
+    String? title = '',
+    String? description = '',
+    int? offset,
+    int? limit,
+    String? content = '',
+    String? apiKey = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Travel Guides',
+      apiUrl: 'https://ljhpejoalrogchgkzsfo.supabase.co/rest/v1/TravelGuides',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey': '${apiKey}',
+      },
+      params: {
+        'offset': offset,
+        'limit': limit,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

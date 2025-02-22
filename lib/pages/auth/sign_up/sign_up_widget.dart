@@ -3,6 +3,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'sign_up_model.dart';
@@ -10,6 +11,9 @@ export 'sign_up_model.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({super.key});
+
+  static String routeName = 'SignUp';
+  static String routePath = '/signUp';
 
   @override
   State<SignUpWidget> createState() => _SignUpWidgetState();
@@ -623,14 +627,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       'email': _model.emailTextController.text,
                                       'created_at': supaSerialize<DateTime>(
                                           getCurrentTimestamp),
-                                      'password':
-                                          _model.passwordTextController.text,
                                     });
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();
                                     }
                                     context.pushNamedAuth(
-                                        'SignIn', context.mounted);
+                                        SignInWidget.routeName,
+                                        context.mounted);
                                   },
                                   text: 'Sign Up',
                                   options: FFButtonOptions(
@@ -687,7 +690,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed('SignIn');
+                                  context.pushNamed(
+                                      RouteOptimizationWidget.routeName);
                                 },
                                 text: 'Sign In',
                                 options: FFButtonOptions(

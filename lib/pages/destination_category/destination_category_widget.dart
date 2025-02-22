@@ -7,6 +7,9 @@ export 'destination_category_model.dart';
 class DestinationCategoryWidget extends StatefulWidget {
   const DestinationCategoryWidget({super.key});
 
+  static String routeName = 'DestinationCategory';
+  static String routePath = '/destinationCategory';
+
   @override
   State<DestinationCategoryWidget> createState() =>
       _DestinationCategoryWidgetState();

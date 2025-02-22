@@ -2,9 +2,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'route_optimization_model.dart';
@@ -75,6 +77,9 @@ export 'route_optimization_model.dart';
 class RouteOptimizationWidget extends StatefulWidget {
   const RouteOptimizationWidget({super.key});
 
+  static String routeName = 'RouteOptimization';
+  static String routePath = '/routeOptimization';
+
   @override
   State<RouteOptimizationWidget> createState() =>
       _RouteOptimizationWidgetState();
@@ -89,6 +94,13 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RouteOptimizationModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.currentLocation = await actions.getCurrentLocation();
+      FFAppState().currentLocation = _model.currentLocation;
+      safeSetState(() {});
+    });
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
@@ -151,8 +163,8 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
+                              onPressed: () async {
+                                context.pushNamed(DestinationsWidget.routeName);
                               },
                             ),
                             Text(
@@ -378,7 +390,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                                 .titleSmallFamily),
                                   ),
                               elevation: 0.0,
-                              borderRadius: BorderRadius.circular(25.0),
+                              borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
                           FFButtonWidget(
@@ -388,6 +400,8 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                             text: 'Clear',
                             icon: Icon(
                               Icons.clear,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
@@ -396,14 +410,14 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                               padding: EdgeInsets.all(8.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFFF5F5F5),
+                              color: FlutterFlowTheme.of(context).error,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .titleSmallFamily,
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                        .secondaryBackground,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -411,7 +425,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                                 .titleSmallFamily),
                                   ),
                               elevation: 0.0,
-                              borderRadius: BorderRadius.circular(25.0),
+                              borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
                         ],
@@ -475,19 +489,6 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                       startingPoint:
                                           FFAppState().destinations.firstOrNull,
                                     ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 40.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).info,
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: Icon(
-                                    Icons.location_on,
-                                    color: FlutterFlowTheme.of(context).error,
-                                    size: 24.0,
                                   ),
                                 ),
                               ],
@@ -656,8 +657,8 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                    child: Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '1',
                                         textAlign: TextAlign.center,
@@ -670,6 +671,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .info,
+                                              fontSize: 10.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
@@ -711,8 +713,8 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                    child: Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '2',
                                         textAlign: TextAlign.center,
@@ -725,6 +727,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .info,
+                                              fontSize: 10.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
@@ -766,8 +769,8 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                    child: Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '3',
                                         textAlign: TextAlign.center,
@@ -780,6 +783,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .info,
+                                              fontSize: 10.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()

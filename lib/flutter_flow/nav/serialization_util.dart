@@ -220,6 +220,8 @@ dynamic deserializeParam<T>(
             return DestinationsRow(data);
           case Users1Row:
             return Users1Row(data);
+          case TravelGuidesRow:
+            return TravelGuidesRow(data);
           case UsersRow:
             return UsersRow(data);
           case ItinerariesRow:

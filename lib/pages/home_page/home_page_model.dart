@@ -1,6 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'dart:async';
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:flutter/material.dart';
@@ -11,17 +13,39 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   int? limit = 10;
 
+  List<DestinationsRow> destinations = [];
+  void addToDestinations(DestinationsRow item) => destinations.add(item);
+  void removeFromDestinations(DestinationsRow item) =>
+      destinations.remove(item);
+  void removeAtIndexFromDestinations(int index) => destinations.removeAt(index);
+  void insertAtIndexInDestinations(int index, DestinationsRow item) =>
+      destinations.insert(index, item);
+  void updateDestinationsAtIndex(
+          int index, Function(DestinationsRow) updateFn) =>
+      destinations[index] = updateFn(destinations[index]);
+
+  List<DestinationsRow> searchedDestinations = [];
+  void addToSearchedDestinations(DestinationsRow item) =>
+      searchedDestinations.add(item);
+  void removeFromSearchedDestinations(DestinationsRow item) =>
+      searchedDestinations.remove(item);
+  void removeAtIndexFromSearchedDestinations(int index) =>
+      searchedDestinations.removeAt(index);
+  void insertAtIndexInSearchedDestinations(int index, DestinationsRow item) =>
+      searchedDestinations.insert(index, item);
+  void updateSearchedDestinationsAtIndex(
+          int index, Function(DestinationsRow) updateFn) =>
+      searchedDestinations[index] = updateFn(searchedDestinations[index]);
+
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - Query Rows] action in HomePage widget.
+  List<DestinationsRow>? allDestinations;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // State field(s) for ListView widget.
-
-  PagingController<ApiPagingParams, dynamic>? listViewPagingController1;
-  Function(ApiPagingParams nextPageMarker)? listViewApiCall1;
-
+  List<String> simpleSearchResults = [];
   // State field(s) for ListView widget.
 
   PagingController<ApiPagingParams, dynamic>? listViewPagingController2;
@@ -35,55 +59,10 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
-    listViewPagingController1?.dispose();
     listViewPagingController2?.dispose();
   }
 
   /// Additional helper methods.
-  PagingController<ApiPagingParams, dynamic> setListViewController1(
-    Function(ApiPagingParams) apiCall,
-  ) {
-    listViewApiCall1 = apiCall;
-    return listViewPagingController1 ??= _createListViewController1(apiCall);
-  }
-
-  PagingController<ApiPagingParams, dynamic> _createListViewController1(
-    Function(ApiPagingParams) query,
-  ) {
-    final controller = PagingController<ApiPagingParams, dynamic>(
-      firstPageKey: ApiPagingParams(
-        nextPageNumber: 0,
-        numItems: 0,
-        lastResponse: null,
-      ),
-    );
-    return controller..addPageRequestListener(listViewGetDestinationNamePage1);
-  }
-
-  void listViewGetDestinationNamePage1(ApiPagingParams nextPageMarker) =>
-      listViewApiCall1!(nextPageMarker)
-          .then((listViewGetDestinationNameResponse) {
-        final pageItems = ((listViewGetDestinationNameResponse.jsonBody
-                        .toList()
-                        .map<DestinationsStruct?>(
-                            DestinationsStruct.maybeFromMap)
-                        .toList() as Iterable<DestinationsStruct?>)
-                    .withoutNulls ??
-                [])
-            .toList() as List;
-        final newNumItems = nextPageMarker.numItems + pageItems.length;
-        listViewPagingController1?.appendPage(
-          pageItems,
-          (pageItems.length > 0)
-              ? ApiPagingParams(
-                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
-                  numItems: newNumItems,
-                  lastResponse: listViewGetDestinationNameResponse,
-                )
-              : null,
-        );
-      });
-
   PagingController<ApiPagingParams, dynamic> setListViewController2(
     Function(ApiPagingParams) apiCall,
   ) {

@@ -8,6 +8,9 @@ export 'saved_itinerary_model.dart';
 class SavedItineraryWidget extends StatefulWidget {
   const SavedItineraryWidget({super.key});
 
+  static String routeName = 'SavedItinerary';
+  static String routePath = '/savedItinerary';
+
   @override
   State<SavedItineraryWidget> createState() => _SavedItineraryWidgetState();
 }
