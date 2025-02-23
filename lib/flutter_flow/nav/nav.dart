@@ -120,10 +120,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: HomePageWidget.routePath,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(
-                  guidetitle: params.getParam(
-                    'guidetitle',
-                    ParamType.String,
+              : NavBarPage(
+                  initialPage: 'HomePage',
+                  page: HomePageWidget(
+                    guidetitle: params.getParam(
+                      'guidetitle',
+                      ParamType.String,
+                    ),
                   ),
                 ),
         ),
@@ -131,10 +134,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: DestinationDetailsWidget.routeName,
           path: DestinationDetailsWidget.routePath,
           builder: (context, params) => DestinationDetailsWidget(
-            id: params.getParam(
-              'id',
-              ParamType.int,
-            ),
             name: params.getParam(
               'name',
               ParamType.String,
@@ -147,8 +146,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'barangay',
               ParamType.String,
             ),
+            closing: params.getParam(
+              'closing',
+              ParamType.String,
+            ),
+            image: params.getParam(
+              'image',
+              ParamType.String,
+            ),
+            opening: params.getParam(
+              'opening',
+              ParamType.String,
+            ),
             description: params.getParam(
               'description',
+              ParamType.String,
+            ),
+            rating: params.getParam(
+              'rating',
               ParamType.String,
             ),
           ),
@@ -162,11 +177,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   initialPage: 'Destinations',
                   page: DestinationsWidget(),
                 ),
-        ),
-        FFRoute(
-          name: DestinationCategoryWidget.routeName,
-          path: DestinationCategoryWidget.routePath,
-          builder: (context, params) => DestinationCategoryWidget(),
         ),
         FFRoute(
           name: SavedItineraryWidget.routeName,
@@ -187,6 +197,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   initialPage: 'Settings',
                   page: SettingsWidget(),
                 ),
+        ),
+        FFRoute(
+          name: TravelGuideWidget.routeName,
+          path: TravelGuideWidget.routePath,
+          builder: (context, params) => TravelGuideWidget(
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+            description: params.getParam(
+              'description',
+              ParamType.String,
+            ),
+            content: params.getParam(
+              'content',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -371,14 +399,13 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
+              ? Container(
+                  color: FlutterFlowTheme.of(context).secondary,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/Asset_7@300x.png',
+                      width: MediaQuery.sizeOf(context).width * 0.7,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 )

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
+import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
@@ -22,6 +23,8 @@ class DynamicMapbox extends StatefulWidget {
     this.startingPoint,
     required this.startingZoom,
     this.currentLocation,
+    required this.selectedLatitude,
+    required this.selectedLongitude,
   });
 
   final double? width;
@@ -31,6 +34,8 @@ class DynamicMapbox extends StatefulWidget {
   final LatLng? startingPoint;
   final double startingZoom;
   final LatLng? currentLocation;
+  final List<double> selectedLatitude;
+  final List<double> selectedLongitude;
 
   @override
   State<DynamicMapbox> createState() => _DynamicMapboxWidgetState();
@@ -44,42 +49,61 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
   void initState() {
     super.initState();
     mapController = MapController();
-    addMarkersToMap(
-        widget.points, widget.currentLocation); // ✅ Fixed function call
+    refreshMarkers(); // Call this once when the widget initializes
   }
 
-  void addMarkersToMap(List<LatLng>? points, LatLng? currentLocation) {
-    // ✅ Fixed function signature
+  void refreshMarkers() {
+    print("🔥 Refreshing markers with:");
+    print("📌 Selected Latitudes: ${widget.selectedLatitude}");
+    print("📌 Selected Longitudes: ${widget.selectedLongitude}");
+
     List<Marker> markers = [];
 
-    // ✅ Ensure a BLUE marker for the current location
-    if (currentLocation != null) {
-      print(
-          "Adding marker for current location at: ${currentLocation.latitude}, ${currentLocation.longitude}");
+    // Add BLUE marker for the current location
+    if (widget.currentLocation != null) {
       markers.add(
         Marker(
-          point: ll.LatLng(currentLocation.latitude, currentLocation.longitude),
+          point: ll.LatLng(widget.currentLocation!.latitude,
+              widget.currentLocation!.longitude),
           width: 40,
           height: 40,
           child: const Icon(Icons.location_pin, color: Colors.blue, size: 40),
         ),
       );
-    } else {
-      print("No current location available");
     }
 
-    if (points != null) {
-      markers.addAll(points.map((point) => Marker(
-            point: ll.LatLng(point.latitude, point.longitude),
+    // Add RED markers for selected locations
+    for (int i = 0; i < widget.selectedLatitude.length; i++) {
+      double lat = widget.selectedLatitude[i];
+      double lon = widget.selectedLongitude[i];
+
+      if (lat.isFinite && lon.isFinite) {
+        markers.add(
+          Marker(
+            point: ll.LatLng(lat, lon),
             width: 30,
             height: 30,
             child: const Icon(Icons.location_pin, color: Colors.red, size: 30),
-          )));
+          ),
+        );
+      }
     }
 
     setState(() {
       allMarkers = markers;
+      print("✅ Markers Updated! Total markers: ${allMarkers.length}");
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant DynamicMapbox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.selectedLatitude != oldWidget.selectedLatitude ||
+        widget.selectedLongitude != oldWidget.selectedLongitude) {
+      print("🔄 Widget Updated! Rebuilding Markers...");
+      refreshMarkers();
+    }
   }
 
   @override
@@ -113,23 +137,6 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
         ],
       ),
     );
-  }
-
-  @override
-  void didUpdateWidget(covariant DynamicMapbox oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (widget.currentLocation != oldWidget.currentLocation ||
-        widget.points != oldWidget.points) {
-      print("Detected change in current location, updating markers...");
-
-      setState(() {
-        // ✅ Forces a full widget rebuild
-        allMarkers = [];
-      });
-
-      addMarkersToMap(widget.points, widget.currentLocation);
-    }
   }
 
   @override

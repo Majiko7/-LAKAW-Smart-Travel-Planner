@@ -10,8 +10,7 @@ export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/destination_details/destination_details_widget.dart'
     show DestinationDetailsWidget;
 export '/pages/destinations/destinations_widget.dart' show DestinationsWidget;
-export '/pages/destination_category/destination_category_widget.dart'
-    show DestinationCategoryWidget;
 export '/pages/saved_itinerary/saved_itinerary_widget.dart'
     show SavedItineraryWidget;
 export '/pages/settings/settings_widget.dart' show SettingsWidget;
+export '/pages/travel_guide/travel_guide_widget.dart' show TravelGuideWidget;

@@ -596,19 +596,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     GoRouter.of(context).prepareAuthEvent();
-                                    if (_model.passwordTextController.text !=
-                                        _model.confirmPasswordTextController
-                                            .text) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Passwords don\'t match!',
-                                          ),
-                                        ),
-                                      );
-                                      return;
-                                    }
 
                                     final user = await authManager
                                         .createAccountWithEmail(
@@ -624,10 +611,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       'id': currentUserUid,
                                       'username':
                                           _model.userNameTextController.text,
-                                      'email': _model.emailTextController.text,
+                                      'email': currentUserEmail,
                                       'created_at': supaSerialize<DateTime>(
                                           getCurrentTimestamp),
                                     });
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 500));
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();
                                     }

@@ -25,4 +25,12 @@ class UsersRow extends SupabaseDataRow {
 
   String get email => getField<String>('email')!;
   set email(String value) => setField<String>('email', value);
+
+  bool? get pushNotifications => getField<bool>('push_notifications');
+  set pushNotifications(bool? value) =>
+      setField<bool>('push_notifications', value);
+
+  bool? get emailNotifications => getField<bool>('email_notifications');
+  set emailNotifications(bool? value) =>
+      setField<bool>('email_notifications', value);
 }

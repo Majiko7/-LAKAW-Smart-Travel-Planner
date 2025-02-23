@@ -33,8 +33,7 @@ class FFAppState extends ChangeNotifier {
     LatLng(13.1659984, 123.701149),
     LatLng(13.1605556, 123.7291667),
     LatLng(13.2260225, 123.5546708),
-    LatLng(13.3524479, 123.6212622),
-    LatLng(0.0, 0.0)
+    LatLng(13.3524479, 123.6212622)
   ];
   List<LatLng> get destinations => _destinations;
   set destinations(List<LatLng> value) {
@@ -112,65 +111,5 @@ class FFAppState extends ChangeNotifier {
   bool get isListVisibleROpt => _isListVisibleROpt;
   set isListVisibleROpt(bool value) {
     _isListVisibleROpt = value;
-  }
-
-  /// latitudes of the selected destinations in the Route Optimization page
-  List<double> _selectedLatitude = [];
-  List<double> get selectedLatitude => _selectedLatitude;
-  set selectedLatitude(List<double> value) {
-    _selectedLatitude = value;
-  }
-
-  void addToSelectedLatitude(double value) {
-    selectedLatitude.add(value);
-  }
-
-  void removeFromSelectedLatitude(double value) {
-    selectedLatitude.remove(value);
-  }
-
-  void removeAtIndexFromSelectedLatitude(int index) {
-    selectedLatitude.removeAt(index);
-  }
-
-  void updateSelectedLatitudeAtIndex(
-    int index,
-    double Function(double) updateFn,
-  ) {
-    selectedLatitude[index] = updateFn(_selectedLatitude[index]);
-  }
-
-  void insertAtIndexInSelectedLatitude(int index, double value) {
-    selectedLatitude.insert(index, value);
-  }
-
-  /// longitude of selected destinations in the RouteOptimizationPage
-  List<double> _selectedLongitude = [];
-  List<double> get selectedLongitude => _selectedLongitude;
-  set selectedLongitude(List<double> value) {
-    _selectedLongitude = value;
-  }
-
-  void addToSelectedLongitude(double value) {
-    selectedLongitude.add(value);
-  }
-
-  void removeFromSelectedLongitude(double value) {
-    selectedLongitude.remove(value);
-  }
-
-  void removeAtIndexFromSelectedLongitude(int index) {
-    selectedLongitude.removeAt(index);
-  }
-
-  void updateSelectedLongitudeAtIndex(
-    int index,
-    double Function(double) updateFn,
-  ) {
-    selectedLongitude[index] = updateFn(_selectedLongitude[index]);
-  }
-
-  void insertAtIndexInSelectedLongitude(int index, double value) {
-    selectedLongitude.insert(index, value);
   }
 }

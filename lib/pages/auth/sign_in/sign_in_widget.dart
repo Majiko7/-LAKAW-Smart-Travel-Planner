@@ -432,6 +432,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                                         return;
                                       }
 
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 500));
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }

@@ -126,7 +126,6 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
-        Navigator.pop(context);
       }
 
       _model.currentLocation = await actions.getCurrentLocation();
@@ -380,157 +379,182 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                           ],
                         ),
                         if (FFAppState().isListVisibleROpt)
-                          FutureBuilder<List<DestinationsRow>>(
-                            future: DestinationsTable().queryRows(
-                              queryFn: (q) => q,
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }
-                              List<DestinationsRow>
-                                  listViewDestinationsRowList = snapshot.data!;
-
-                              return ListView.separated(
-                                padding: EdgeInsets.fromLTRB(
-                                  0,
-                                  10.0,
-                                  0,
-                                  10.0,
+                          Container(
+                            width: 300.0,
+                            height: 300.0,
+                            decoration: BoxDecoration(),
+                            child: Visibility(
+                              visible: FFAppState().isListVisibleROpt,
+                              child: FutureBuilder<List<DestinationsRow>>(
+                                future: DestinationsTable().queryRows(
+                                  queryFn: (q) => q,
                                 ),
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: listViewDestinationsRowList.length,
-                                separatorBuilder: (_, __) =>
-                                    SizedBox(height: 10.0),
-                                itemBuilder: (context, listViewIndex) {
-                                  final listViewDestinationsRow =
-                                      listViewDestinationsRowList[
-                                          listViewIndex];
-                                  return Container(
-                                    width: 75.0,
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<DestinationsRow>
+                                      listViewDestinationsRowList =
+                                      snapshot.data!;
+
+                                  return ListView.separated(
+                                    padding: EdgeInsets.fromLTRB(
+                                      0,
+                                      10.0,
+                                      0,
+                                      10.0,
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            valueOrDefault<String>(
-                                              listViewDestinationsRow.imageUrl,
-                                              'https://picsum.photos/seed/853/600',
-                                            ),
-                                            width: 100.0,
-                                            height: 50.0,
-                                            fit: BoxFit.cover,
-                                          ),
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount:
+                                        listViewDestinationsRowList.length,
+                                    separatorBuilder: (_, __) =>
+                                        SizedBox(height: 10.0),
+                                    itemBuilder: (context, listViewIndex) {
+                                      final listViewDestinationsRow =
+                                          listViewDestinationsRowList[
+                                              listViewIndex];
+                                      return Container(
+                                        width: 75.0,
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
                                         ),
-                                        Text(
-                                          valueOrDefault<String>(
-                                            listViewDestinationsRow.name,
-                                            'Destination Name',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                valueOrDefault<String>(
+                                                  listViewDestinationsRow
+                                                      .imageUrl,
+                                                  'https://picsum.photos/seed/853/600',
+                                                ),
+                                                width: 100.0,
+                                                height: 50.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                            Text(
+                                              valueOrDefault<String>(
+                                                listViewDestinationsRow.name,
+                                                'Destination Name',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                            ),
+                                            Theme(
+                                              data: ThemeData(
+                                                checkboxTheme:
+                                                    CheckboxThemeData(
+                                                  visualDensity:
+                                                      VisualDensity.compact,
+                                                  materialTapTargetSize:
+                                                      MaterialTapTargetSize
+                                                          .shrinkWrap,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4.0),
+                                                  ),
+                                                ),
+                                                unselectedWidgetColor:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
+                                                        .secondary,
                                               ),
-                                        ),
-                                        Theme(
-                                          data: ThemeData(
-                                            checkboxTheme: CheckboxThemeData(
-                                              visualDensity:
-                                                  VisualDensity.compact,
-                                              materialTapTargetSize:
-                                                  MaterialTapTargetSize
-                                                      .shrinkWrap,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(4.0),
-                                              ),
-                                            ),
-                                            unselectedWidgetColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
-                                          ),
-                                          child: Checkbox(
-                                            value: _model.checkboxValueMap[
-                                                    listViewDestinationsRow] ??=
-                                                false,
-                                            onChanged: (newValue) async {
-                                              safeSetState(() => _model
-                                                          .checkboxValueMap[
-                                                      listViewDestinationsRow] =
-                                                  newValue!);
-                                              if (newValue!) {
-                                                FFAppState()
-                                                    .addToSelectedDestinations(
-                                                        listViewDestinationsRow
-                                                            .name!);
-                                                FFAppState()
-                                                    .addToSelectedLatitude(
+                                              child: Checkbox(
+                                                value: _model.checkboxValueMap[
+                                                        listViewDestinationsRow] ??=
+                                                    false,
+                                                onChanged: (newValue) async {
+                                                  safeSetState(() => _model
+                                                              .checkboxValueMap[
+                                                          listViewDestinationsRow] =
+                                                      newValue!);
+                                                  if (newValue!) {
+                                                    FFAppState()
+                                                        .addToSelectedDestinations(
+                                                            listViewDestinationsRow
+                                                                .name!);
+                                                    safeSetState(() {});
+                                                    _model.addToSelectedLatitude(
                                                         listViewDestinationsRow
                                                             .latitude!);
-                                                FFAppState()
-                                                    .addToSelectedLongitude(
+                                                    _model.addToSelectedLongitude(
                                                         listViewDestinationsRow
                                                             .longhitude!);
-                                                safeSetState(() {});
-                                              } else {
-                                                FFAppState()
-                                                    .removeFromSelectedDestinations(
+                                                    safeSetState(() {});
+                                                    _model.forceRefresh = true;
+                                                    safeSetState(() {});
+                                                  } else {
+                                                    FFAppState()
+                                                        .removeFromSelectedDestinations(
+                                                            listViewDestinationsRow
+                                                                .name!);
+                                                    safeSetState(() {});
+                                                    _model.removeFromSelectedLatitude(
                                                         listViewDestinationsRow
-                                                            .name!);
-                                                safeSetState(() {});
-                                              }
-                                            },
-                                            side: BorderSide(
-                                              width: 2,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                                            .latitude!);
+                                                    _model.removeFromSelectedLongitude(
+                                                        listViewDestinationsRow
+                                                            .longhitude!);
+                                                    safeSetState(() {});
+                                                  }
+                                                },
+                                                side: BorderSide(
+                                                  width: 2,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondary,
+                                                ),
+                                                activeColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                checkColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                              ),
                                             ),
-                                            activeColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            checkColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .info,
-                                          ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      );
+                                    },
                                   );
                                 },
-                              );
-                            },
+                              ),
+                            ),
                           ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -609,38 +633,6 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      valueOrDefault<String>(
-                        _model.currentLocation?.toString(),
-                        'Action_currentLoc',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                    Text(
-                      valueOrDefault<String>(
-                        FFAppState().currentLocation?.toString(),
-                        'CurrentLocation',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ],
-                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   child: Material(
@@ -659,31 +651,34 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Container(
-                            width: 350.0,
-                            height: 400.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              shape: BoxShape.rectangle,
-                            ),
-                            child: Visibility(
-                              visible: !FFAppState().isLoading,
-                              child: Container(
-                                width: 349.0,
-                                height: 399.0,
-                                child: custom_widgets.DynamicMapbox(
+                          if (!FFAppState().isLoading)
+                            Container(
+                              width: 350.0,
+                              height: 400.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                shape: BoxShape.rectangle,
+                              ),
+                              child: Visibility(
+                                visible: _model.forceRefresh,
+                                child: Container(
                                   width: 349.0,
                                   height: 399.0,
-                                  accessToken:
-                                      'pk.eyJ1IjoibWFqaWtvMjciLCJhIjoiY202MDVtNzZkMDhpYzJsc2YzcTZqNGtlZCJ9.idit4MwHQlrbp2LSMPOz_A',
-                                  startingZoom: 3.0,
-                                  points: FFAppState().destinations,
-                                  startingPoint: FFAppState().currentLocation,
-                                  currentLocation: _model.currentLocation,
+                                  child: custom_widgets.DynamicMapbox(
+                                    width: 349.0,
+                                    height: 399.0,
+                                    accessToken:
+                                        'pk.eyJ1IjoibWFqaWtvMjciLCJhIjoiY202MDVtNzZkMDhpYzJsc2YzcTZqNGtlZCJ9.idit4MwHQlrbp2LSMPOz_A',
+                                    startingZoom: 7.0,
+                                    points: FFAppState().destinations,
+                                    startingPoint: FFAppState().currentLocation,
+                                    currentLocation: _model.currentLocation,
+                                    selectedLatitude: _model.selectedLatitude,
+                                    selectedLongitude: _model.selectedLongitude,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ),

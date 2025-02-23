@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'welcome_model.dart';
 export 'welcome_model.dart';
@@ -68,21 +67,13 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'LAKAW',
-                    style: FlutterFlowTheme.of(context).displayMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).displayMediumFamily,
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).displayMediumFamily),
-                        ),
-                  ),
-                  FaIcon(
-                    FontAwesomeIcons.car,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                    size: 40.0,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      'assets/images/Asset_7@300x.png',
+                      width: MediaQuery.sizeOf(context).width * 0.7,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ].divide(SizedBox(width: 7.0)),
               ),
@@ -134,8 +125,8 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                       },
                       text: 'Your Journey Starts Here',
                       icon: Icon(
-                        Icons.airplanemode_active,
-                        size: 15.0,
+                        Icons.directions_walk_rounded,
+                        size: 24.0,
                       ),
                       options: FFButtonOptions(
                         width: MediaQuery.sizeOf(context).width * 0.75,

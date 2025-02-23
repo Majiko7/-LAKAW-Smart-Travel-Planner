@@ -1,9 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'destination_category_widget.dart' show DestinationCategoryWidget;
+import 'travel_guide_widget.dart' show TravelGuideWidget;
 import 'package:flutter/material.dart';
 
-class DestinationCategoryModel
-    extends FlutterFlowModel<DestinationCategoryWidget> {
+class TravelGuideModel extends FlutterFlowModel<TravelGuideWidget> {
   @override
   void initState(BuildContext context) {}
 

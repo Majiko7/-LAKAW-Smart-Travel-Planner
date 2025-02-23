@@ -19,6 +19,8 @@ class GetDestinationNameCall {
     String? category = '',
     String? imageUrl = '',
     String? barangay = '',
+    String? openingHour = '',
+    String? closingHour = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Destination Name',
