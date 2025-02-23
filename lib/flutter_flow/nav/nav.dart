@@ -147,6 +147,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'barangay',
               ParamType.String,
             ),
+            description: params.getParam(
+              'description',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

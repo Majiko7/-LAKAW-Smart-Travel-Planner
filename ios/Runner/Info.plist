@@ -43,7 +43,8 @@
 	<true/>
 
 
-
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>Please enable location services to proceed.</string>
 
 
 	<key>UILaunchStoryboardName</key>

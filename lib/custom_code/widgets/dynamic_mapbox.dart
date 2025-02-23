@@ -44,37 +44,42 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
   void initState() {
     super.initState();
     mapController = MapController();
-
-    // ✅ Add starting point marker if available
-    if (widget.currentLocation != null) {
-      allMarkers.add(
-        Marker(
-          point: ll.LatLng(widget.currentLocation!.latitude,
-              widget.currentLocation!.longitude),
-          width: 40,
-          height: 40,
-          child: const Icon(Icons.my_location, color: Colors.blue, size: 40),
-        ),
-      );
-    }
-
-    addMarkersToMap(widget.points);
+    addMarkersToMap(
+        widget.points, widget.currentLocation); // ✅ Fixed function call
   }
 
-  void addMarkersToMap(List<LatLng>? points) {
-    if (points != null) {
-      setState(() {
-        allMarkers = points
-            .map((point) => Marker(
-                  point: ll.LatLng(point.latitude, point.longitude),
-                  width: 30,
-                  height: 30,
-                  child: const Icon(Icons.location_pin,
-                      color: Colors.red, size: 30),
-                ))
-            .toList();
-      });
+  void addMarkersToMap(List<LatLng>? points, LatLng? currentLocation) {
+    // ✅ Fixed function signature
+    List<Marker> markers = [];
+
+    // ✅ Ensure a BLUE marker for the current location
+    if (currentLocation != null) {
+      print(
+          "Adding marker for current location at: ${currentLocation.latitude}, ${currentLocation.longitude}");
+      markers.add(
+        Marker(
+          point: ll.LatLng(currentLocation.latitude, currentLocation.longitude),
+          width: 40,
+          height: 40,
+          child: const Icon(Icons.location_pin, color: Colors.blue, size: 40),
+        ),
+      );
+    } else {
+      print("No current location available");
     }
+
+    if (points != null) {
+      markers.addAll(points.map((point) => Marker(
+            point: ll.LatLng(point.latitude, point.longitude),
+            width: 30,
+            height: 30,
+            child: const Icon(Icons.location_pin, color: Colors.red, size: 30),
+          )));
+    }
+
+    setState(() {
+      allMarkers = markers;
+    });
   }
 
   @override
@@ -85,8 +90,7 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
       child: FlutterMap(
         mapController: mapController,
         options: MapOptions(
-          initialCenter: widget.currentLocation !=
-                  null // ✅ Set initial center to current location
+          initialCenter: widget.currentLocation != null
               ? ll.LatLng(widget.currentLocation!.latitude,
                   widget.currentLocation!.longitude)
               : widget.startingPoint != null
@@ -94,10 +98,6 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
                       widget.startingPoint!.longitude)
                   : const ll.LatLng(13.1333, 123.7333),
           initialZoom: widget.startingZoom,
-          interactionOptions: const InteractionOptions(
-            enableScrollWheel: true,
-            enableMultiFingerGestureRace: true,
-          ),
         ),
         children: [
           TileLayer(
@@ -113,6 +113,23 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
         ],
       ),
     );
+  }
+
+  @override
+  void didUpdateWidget(covariant DynamicMapbox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.currentLocation != oldWidget.currentLocation ||
+        widget.points != oldWidget.points) {
+      print("Detected change in current location, updating markers...");
+
+      setState(() {
+        // ✅ Forces a full widget rebuild
+        allMarkers = [];
+      });
+
+      addMarkersToMap(widget.points, widget.currentLocation);
+    }
   }
 
   @override

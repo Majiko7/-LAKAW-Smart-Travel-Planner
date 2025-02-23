@@ -1,8 +1,6 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'destination_details_model.dart';
@@ -22,12 +20,14 @@ class DestinationDetailsWidget extends StatefulWidget {
     this.name,
     required this.municipalCity,
     required this.barangay,
+    required this.description,
   });
 
   final int? id;
   final String? name;
   final String? municipalCity;
   final String? barangay;
+  final String? description;
 
   static String routeName = 'DestinationDetails';
   static String routePath = '/destinationDetails';
@@ -102,62 +102,79 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                             ),
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 24.0, 24.0, 24.0),
+                                  25.0, 25.0, 25.0, 25.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    valueOrDefault<String>(
-                                      widget.name,
-                                      'DistanationName',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .displaySmall
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .displaySmallFamily,
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .displaySmallFamily),
-                                        ),
+                                  Icon(
+                                    Icons.chevron_left_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    size: 45.0,
                                   ),
-                                  Row(
+                                  Column(
                                     mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(
-                                        Icons.location_on,
-                                        color: Colors.white,
-                                        size: 20.0,
-                                      ),
                                       Text(
                                         valueOrDefault<String>(
-                                          widget.municipalCity,
-                                          'destinationLocation',
+                                          widget.name,
+                                          'DestinationName',
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
+                                            .displaySmall
                                             .override(
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
+                                                      .displaySmallFamily,
                                               color: Colors.white,
                                               letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
+                                              fontWeight: FontWeight.bold,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmallFamily),
+                                            ),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Icon(
+                                            Icons.location_on,
+                                            color: Colors.white,
+                                            size: 20.0,
+                                          ),
+                                          Text(
+                                            valueOrDefault<String>(
+                                              widget.municipalCity,
+                                              'destinationLocation',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyLargeFamily,
+                                                  color: Colors.white,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyLargeFamily),
-                                            ),
+                                                ),
+                                          ),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
-                                    ].divide(SizedBox(width: 8.0)),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -213,26 +230,6 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                                     .containsKey(FlutterFlowTheme
                                                             .of(context)
                                                         .headlineSmallFamily),
-                                              ),
-                                        ),
-                                        Text(
-                                          '(2.3k reviews)',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
                                               ),
                                         ),
                                       ].divide(SizedBox(width: 8.0)),
@@ -301,7 +298,10 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                           ),
                                     ),
                                     Text(
-                                      'Experience breathtaking panoramic views of the perfect cone-shaped Mayon Volcano from this elevated viewing deck. Surrounded by lush greenery and cool mountain air, this destination offers the best vantage point for photography and peaceful contemplation.',
+                                      valueOrDefault<String>(
+                                        widget.description,
+                                        'Description meow meow meow meow',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -895,66 +895,6 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0x83000000), Colors.transparent],
-                    stops: [0.0, 1.0],
-                    begin: AlignmentDirectional(0.0, 1.0),
-                    end: AlignmentDirectional(0, -1.0),
-                  ),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(0.0),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 2.0,
-                      sigmaY: 2.0,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          16.0, 48.0, 16.0, 16.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderRadius: 20.0,
-                            buttonSize: 40.0,
-                            fillColor: Color(0x33FFFFFF),
-                            icon: Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                              size: 24.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                buttonSize: 40.0,
-                                fillColor: Color(0x33FFFFFF),
-                                icon: Icon(
-                                  Icons.favorite_border,
-                                  color: Colors.white,
-                                  size: 24.0,
-                                ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
-                              ),
-                            ].divide(SizedBox(width: 16.0)),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                 ),
               ),
             ],

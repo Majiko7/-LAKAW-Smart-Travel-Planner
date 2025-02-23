@@ -69,4 +69,108 @@ class FFAppState extends ChangeNotifier {
   set currentLocation(LatLng? value) {
     _currentLocation = value;
   }
+
+  /// loading of Mapbox Map in route optimization page
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+  set isLoading(bool value) {
+    _isLoading = value;
+  }
+
+  /// List of chosen destinations
+  List<String> _selectedDestinations = [];
+  List<String> get selectedDestinations => _selectedDestinations;
+  set selectedDestinations(List<String> value) {
+    _selectedDestinations = value;
+  }
+
+  void addToSelectedDestinations(String value) {
+    selectedDestinations.add(value);
+  }
+
+  void removeFromSelectedDestinations(String value) {
+    selectedDestinations.remove(value);
+  }
+
+  void removeAtIndexFromSelectedDestinations(int index) {
+    selectedDestinations.removeAt(index);
+  }
+
+  void updateSelectedDestinationsAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    selectedDestinations[index] = updateFn(_selectedDestinations[index]);
+  }
+
+  void insertAtIndexInSelectedDestinations(int index, String value) {
+    selectedDestinations.insert(index, value);
+  }
+
+  /// controls visibility of list view in Route Optimization Page
+  bool _isListVisibleROpt = false;
+  bool get isListVisibleROpt => _isListVisibleROpt;
+  set isListVisibleROpt(bool value) {
+    _isListVisibleROpt = value;
+  }
+
+  /// latitudes of the selected destinations in the Route Optimization page
+  List<double> _selectedLatitude = [];
+  List<double> get selectedLatitude => _selectedLatitude;
+  set selectedLatitude(List<double> value) {
+    _selectedLatitude = value;
+  }
+
+  void addToSelectedLatitude(double value) {
+    selectedLatitude.add(value);
+  }
+
+  void removeFromSelectedLatitude(double value) {
+    selectedLatitude.remove(value);
+  }
+
+  void removeAtIndexFromSelectedLatitude(int index) {
+    selectedLatitude.removeAt(index);
+  }
+
+  void updateSelectedLatitudeAtIndex(
+    int index,
+    double Function(double) updateFn,
+  ) {
+    selectedLatitude[index] = updateFn(_selectedLatitude[index]);
+  }
+
+  void insertAtIndexInSelectedLatitude(int index, double value) {
+    selectedLatitude.insert(index, value);
+  }
+
+  /// longitude of selected destinations in the RouteOptimizationPage
+  List<double> _selectedLongitude = [];
+  List<double> get selectedLongitude => _selectedLongitude;
+  set selectedLongitude(List<double> value) {
+    _selectedLongitude = value;
+  }
+
+  void addToSelectedLongitude(double value) {
+    selectedLongitude.add(value);
+  }
+
+  void removeFromSelectedLongitude(double value) {
+    selectedLongitude.remove(value);
+  }
+
+  void removeAtIndexFromSelectedLongitude(int index) {
+    selectedLongitude.removeAt(index);
+  }
+
+  void updateSelectedLongitudeAtIndex(
+    int index,
+    double Function(double) updateFn,
+  ) {
+    selectedLongitude[index] = updateFn(_selectedLongitude[index]);
+  }
+
+  void insertAtIndexInSelectedLongitude(int index, double value) {
+    selectedLongitude.insert(index, value);
+  }
 }

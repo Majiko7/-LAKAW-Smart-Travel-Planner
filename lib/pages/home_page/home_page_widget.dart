@@ -482,6 +482,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .barangay,
                                                               ParamType.String,
                                                             ),
+                                                            'description':
+                                                                serializeParam(
+                                                              '',
+                                                              ParamType.String,
+                                                            ),
                                                           }.withoutNulls,
                                                         );
                                                       },
@@ -765,6 +770,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ParamType.String,
                                                   ),
                                                   'barangay': serializeParam(
+                                                    '',
+                                                    ParamType.String,
+                                                  ),
+                                                  'description': serializeParam(
                                                     '',
                                                     ParamType.String,
                                                   ),

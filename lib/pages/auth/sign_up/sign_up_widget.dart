@@ -667,6 +667,34 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             ),
                           ),
                         ),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            context
+                                .pushNamed(RouteOptimizationWidget.routeName);
+                          },
+                          text: 'RouteOpt',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleSmallFamily,
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
+                                ),
+                            elevation: 0.0,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 30.0),
@@ -690,8 +718,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed(
-                                      RouteOptimizationWidget.routeName);
+                                  context.pushNamed(HomePageWidget.routeName);
                                 },
                                 text: 'Sign In',
                                 options: FFButtonOptions(
