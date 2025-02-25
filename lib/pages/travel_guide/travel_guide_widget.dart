@@ -1,4 +1,3 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -54,36 +53,144 @@ class _TravelGuideWidgetState extends State<TravelGuideWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondary,
         body: Container(
           width: MediaQuery.sizeOf(context).width * 1.0,
           height: MediaQuery.sizeOf(context).height * 1.0,
           child: Stack(
             children: [
-              Container(
-                width: MediaQuery.sizeOf(context).width * 1.0,
-                height: MediaQuery.sizeOf(context).height * 0.4,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xFF1E88E5), Color(0xFF0D47A1)],
-                    stops: [0.0, 1.0],
-                    begin: AlignmentDirectional(0.0, -1.0),
-                    end: AlignmentDirectional(0, 1.0),
-                  ),
-                ),
-                child: Image.network(
-                  '',
-                  width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: MediaQuery.sizeOf(context).height * 1.0,
-                  fit: BoxFit.cover,
-                ),
-              ),
               SingleChildScrollView(
                 primary: false,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: 200.0,
+                      child: Stack(
+                        children: [
+                          Image.network(
+                            'https://images.unsplash.com/photo-1660144910841-b9b16aa62de7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw3fHxhbGJheXxlbnwwfHx8fDE3NDAzMzcwMjJ8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: 200.0,
+                            fit: BoxFit.cover,
+                          ),
+                          Container(
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: 200.0,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.transparent,
+                                  FlutterFlowTheme.of(context).secondary
+                                ],
+                                stops: [0.0, 0.9],
+                                begin: AlignmentDirectional(0.0, -1.0),
+                                end: AlignmentDirectional(0, 1.0),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  25.0, 25.0, 25.0, 25.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.safePop();
+                                    },
+                                    child: Icon(
+                                      Icons.chevron_left_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      size: 45.0,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Travel Guide',
+                                            style: FlutterFlowTheme.of(context)
+                                                .displaySmall
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmallFamily,
+                                                  color: Colors.white,
+                                                  fontSize: 25.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .displaySmallFamily),
+                                                ),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        'Essential tips for your journey',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyLargeFamily),
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ].divide(SizedBox(width: 3.0)),
+                                              ),
+                                            ].divide(SizedBox(width: 8.0)),
+                                          ),
+                                        ].divide(SizedBox(height: 3.0)),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       decoration: BoxDecoration(
@@ -110,7 +217,10 @@ class _TravelGuideWidgetState extends State<TravelGuideWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Travel Guide',
+                                      valueOrDefault<String>(
+                                        widget.title,
+                                        '[title]',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .override(
@@ -127,29 +237,12 @@ class _TravelGuideWidgetState extends State<TravelGuideWidget> {
                                                         .headlineMediumFamily),
                                           ),
                                     ),
-                                    Text(
-                                      'Essential tips for your journey',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLargeFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLargeFamily),
-                                          ),
-                                    ),
                                   ],
                                 ),
                                 Icon(
                                   Icons.bookmark_border,
                                   color: FlutterFlowTheme.of(context).primary,
-                                  size: 28.0,
+                                  size: 45.0,
                                 ),
                               ],
                             ),
@@ -167,7 +260,11 @@ class _TravelGuideWidgetState extends State<TravelGuideWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      'Make sure you\'re well-prepared for your adventure with these essential tips and guidelines. Following these recommendations will help ensure a smooth and enjoyable journey.',
+                                      valueOrDefault<String>(
+                                        widget.description,
+                                        '[description]',
+                                      ),
+                                      textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -201,7 +298,7 @@ class _TravelGuideWidgetState extends State<TravelGuideWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      'Documentation',
+                                      'Travel Guide',
                                       style: FlutterFlowTheme.of(context)
                                           .headlineSmall
                                           .override(
@@ -224,70 +321,10 @@ class _TravelGuideWidgetState extends State<TravelGuideWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
-                                              'Valid ID or Passport',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                            ),
-                                          ].divide(SizedBox(width: 12.0)),
-                                        ),
-                                      ].divide(SizedBox(height: 8.0)),
-                                    ),
-                                  ].divide(SizedBox(height: 16.0)),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 16.0, 16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Packing Essentials',
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineSmall
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineSmallFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineSmallFamily),
-                                          ),
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Weather-appropriate clothing',
+                                              valueOrDefault<String>(
+                                                widget.content,
+                                                '[content]',
+                                              ),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -318,22 +355,6 @@ class _TravelGuideWidgetState extends State<TravelGuideWidget> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 44.0, 24.0, 0.0),
-                child: FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 20.0,
-                  buttonSize: 40.0,
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: FlutterFlowTheme.of(context).info,
-                    size: 24.0,
-                  ),
-                  onPressed: () {
-                    print('IconButton pressed ...');
-                  },
                 ),
               ),
             ],

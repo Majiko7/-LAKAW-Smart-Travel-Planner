@@ -119,20 +119,33 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.safePop();
-                                    },
-                                    child: Icon(
-                                      Icons.chevron_left_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      size: 45.0,
-                                    ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.safePop();
+                                        },
+                                        child: Icon(
+                                          Icons.chevron_left_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          size: 50.0,
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.bookmark_border,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        size: 35.0,
+                                      ),
+                                    ],
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -267,6 +280,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -560,12 +574,10 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                     decoration: BoxDecoration(),
                                     child: FutureBuilder<List<DestinationsRow>>(
                                       future: DestinationsTable().queryRows(
-                                        queryFn: (q) => q
-                                            .eqOrNull(
-                                              'municipal_city',
-                                              widget.municipalCity,
-                                            )
-                                            .order('latitude'),
+                                        queryFn: (q) => q.eqOrNull(
+                                          'municipal_city',
+                                          widget.municipalCity,
+                                        ),
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -979,7 +991,7 @@ class _DestinationDetailsWidgetState extends State<DestinationDetailsWidget> {
                                 ].divide(SizedBox(height: 10.0)),
                               ),
                             ),
-                          ],
+                          ].addToEnd(SizedBox(height: 70.0)),
                         ),
                       ),
                     ),

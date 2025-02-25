@@ -1072,109 +1072,171 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     Container(
                                       width: 70.0,
                                       decoration: BoxDecoration(),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Stack(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            children: [
-                                              Container(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  shape: BoxShape.circle,
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            DestinationCategoryWidget.routeName,
+                                            queryParameters: {
+                                              'category': serializeParam(
+                                                '',
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        },
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Stack(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              children: [
+                                                Container(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    shape: BoxShape.circle,
+                                                  ),
                                                 ),
-                                              ),
-                                              Icon(
-                                                Icons.dinner_dining,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 30.0,
-                                              ),
-                                            ],
-                                          ),
-                                          Text(
-                                            'Dining',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMediumFamily,
+                                                Icon(
+                                                  Icons.dinner_dining,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMediumFamily),
+                                                  size: 30.0,
                                                 ),
-                                          ),
-                                        ].divide(SizedBox(height: 5.0)),
+                                              ],
+                                            ),
+                                            Text(
+                                              'Dining',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelMediumFamily,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMediumFamily),
+                                                  ),
+                                            ),
+                                          ].divide(SizedBox(height: 5.0)),
+                                        ),
                                       ),
                                     ),
                                     Container(
                                       width: 70.0,
                                       decoration: BoxDecoration(),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Stack(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            children: [
-                                              Container(
+                                      child:
+                                          FutureBuilder<List<DestinationsRow>>(
+                                        future:
+                                            DestinationsTable().querySingleRow(
+                                          queryFn: (q) => q.ilike(
+                                            'category',
+                                            'adventure',
+                                          ),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
                                                 width: 50.0,
                                                 height: 50.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  shape: BoxShape.circle,
-                                                ),
-                                              ),
-                                              Icon(
-                                                Icons.hiking_rounded,
-                                                color:
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                size: 30.0,
+                                                  ),
+                                                ),
                                               ),
-                                            ],
-                                          ),
-                                          Text(
-                                            'Adventure',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMediumFamily,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
+                                            );
+                                          }
+                                          List<DestinationsRow>
+                                              columnDestinationsRowList =
+                                              snapshot.data!;
+
+                                          final columnDestinationsRow =
+                                              columnDestinationsRowList
+                                                      .isNotEmpty
+                                                  ? columnDestinationsRowList
+                                                      .first
+                                                  : null;
+
+                                          return Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Stack(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                children: [
+                                                  Container(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .labelMediumFamily),
-                                                ),
-                                          ),
-                                        ].divide(SizedBox(height: 5.0)),
+                                                              .alternate,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                  Icon(
+                                                    Icons.hiking_rounded,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    size: 30.0,
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                'Adventure',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
+                                                        ),
+                                              ),
+                                            ].divide(SizedBox(height: 5.0)),
+                                          );
+                                        },
                                       ),
                                     ),
                                     Container(
@@ -1505,11 +1567,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 0.0, 10.0, 0.0),
+                                    20.0, 0.0, 20.0, 0.0),
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 230.0,
-                                  decoration: BoxDecoration(),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10.0),
+                                      bottomRight: Radius.circular(10.0),
+                                      topLeft: Radius.circular(0.0),
+                                      topRight: Radius.circular(0.0),
+                                    ),
+                                  ),
                                   child: FutureBuilder<List<TravelGuidesRow>>(
                                     future: TravelGuidesTable().queryRows(
                                       queryFn: (q) => q,
@@ -1538,98 +1606,106 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       return ListView.separated(
                                         padding: EdgeInsets.zero,
                                         primary: false,
+                                        shrinkWrap: true,
                                         scrollDirection: Axis.vertical,
                                         itemCount:
                                             listViewTravelGuidesRowList.length,
                                         separatorBuilder: (_, __) =>
-                                            SizedBox(height: 6.0),
+                                            SizedBox(height: 10.0),
                                         itemBuilder: (context, listViewIndex) {
                                           final listViewTravelGuidesRow =
                                               listViewTravelGuidesRowList[
                                                   listViewIndex];
-                                          return Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 5.0, 10.0, 5.0),
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                TravelGuideWidget.routeName,
+                                                queryParameters: {
+                                                  'title': serializeParam(
+                                                    listViewTravelGuidesRow
+                                                        .title,
+                                                    ParamType.String,
+                                                  ),
+                                                  'description': serializeParam(
+                                                    listViewTravelGuidesRow
+                                                        .description,
+                                                    ParamType.String,
+                                                  ),
+                                                  'content': serializeParam(
+                                                    listViewTravelGuidesRow
+                                                        .content,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
                                             child: Container(
-                                              width: 150.0,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 100.0,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 10.0,
-                                                    color: Color(0x33000000),
-                                                    offset: Offset(
-                                                      0.0,
-                                                      5.0,
-                                                    ),
-                                                  )
-                                                ],
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
                                               ),
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    TravelGuideWidget.routeName,
-                                                    queryParameters: {
-                                                      'title': serializeParam(
-                                                        listViewTravelGuidesRow
-                                                            .title,
-                                                        ParamType.String,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Flexible(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(15.0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(0.0),
+                                                        child: Image.network(
+                                                          listViewTravelGuidesRow
+                                                              .icon!,
+                                                          width: 100.0,
+                                                          height: 100.0,
+                                                          fit: BoxFit.fitHeight,
+                                                        ),
                                                       ),
-                                                      'description':
-                                                          serializeParam(
-                                                        listViewTravelGuidesRow
-                                                            .description,
-                                                        ParamType.String,
-                                                      ),
-                                                      'content': serializeParam(
-                                                        '',
-                                                        ParamType.String,
-                                                      ),
-                                                    }.withoutNulls,
-                                                  );
-                                                },
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Container(
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Container(
                                                       decoration:
                                                           BoxDecoration(),
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    10.0,
+                                                                    0.0,
                                                                     10.0,
                                                                     10.0,
                                                                     10.0),
                                                         child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
-                                                                  .stretch,
+                                                                  .start,
                                                           children: [
                                                             Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                listViewTravelGuidesRow
-                                                                    .title,
-                                                                '[title]',
-                                                              ),
-                                                              maxLines: 1,
+                                                              listViewTravelGuidesRow
+                                                                  .title,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -1652,10 +1728,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   ),
                                                             ),
                                                             Text(
-                                                              listViewTravelGuidesRow
-                                                                  .description!
-                                                                  .maybeHandleOverflow(
-                                                                maxChars: 120,
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                listViewTravelGuidesRow
+                                                                    .description,
+                                                                '[description]',
+                                                              ).maybeHandleOverflow(
+                                                                maxChars: 30,
                                                                 replacement:
                                                                     '…',
                                                               ),
@@ -1679,13 +1758,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                   ),
                                                             ),
-                                                          ],
+                                                          ].divide(SizedBox(
+                                                              height: 10.0)),
                                                         ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      SizedBox(height: 12.0)),
-                                                ),
+                                                  ),
+                                                ].divide(SizedBox(width: 10.0)),
                                               ),
                                             ),
                                           );
@@ -1697,8 +1776,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                             ]
                                 .divide(SizedBox(height: 10.0))
-                                .addToStart(SizedBox(height: 30.0))
-                                .addToEnd(SizedBox(height: 30.0)),
+                                .addToStart(SizedBox(height: 30.0)),
                           ),
                         ),
                       ),
@@ -1706,7 +1784,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ],
                 ),
               ),
-            ],
+            ].addToEnd(SizedBox(height: 75.0)),
           ),
         ),
       ),

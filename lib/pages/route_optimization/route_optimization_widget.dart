@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -515,8 +516,16 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                                     _model.addToSelectedLongitude(
                                                         listViewDestinationsRow
                                                             .longhitude!);
+                                                    _model
+                                                        .addToSelectedCheckbox(
+                                                            true);
                                                     safeSetState(() {});
                                                     _model.forceRefresh = true;
+                                                    safeSetState(() {});
+                                                    await Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 50));
+                                                    _model.forceRefresh = false;
                                                     safeSetState(() {});
                                                   } else {
                                                     FFAppState()
@@ -530,6 +539,16 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                                     _model.removeFromSelectedLongitude(
                                                         listViewDestinationsRow
                                                             .longhitude!);
+                                                    _model
+                                                        .removeFromSelectedCheckbox(
+                                                            false);
+                                                    safeSetState(() {});
+                                                    _model.forceRefresh = true;
+                                                    safeSetState(() {});
+                                                    await Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 50));
+                                                    _model.forceRefresh = false;
                                                     safeSetState(() {});
                                                   }
                                                 },
@@ -561,8 +580,27 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                _model.coordinatesJson =
+                                    await actions.combineLatLng(
+                                  _model.selectedLatitude.toList(),
+                                  _model.selectedLongitude.toList(),
+                                );
+                                _model.routePolyline = functions
+                                    .floydWarshallAlgo(
+                                        _model.coordinatesJson?.toList(),
+                                        FFAppState().currentLocation)!
+                                    .toList()
+                                    .cast<dynamic>();
+                                safeSetState(() {});
+                                _model.forceRefresh = true;
+                                safeSetState(() {});
+                                await Future.delayed(
+                                    const Duration(milliseconds: 50));
+                                _model.forceRefresh = false;
+                                safeSetState(() {});
+
+                                safeSetState(() {});
                               },
                               text: 'Calculate Route',
                               icon: Icon(
@@ -593,8 +631,19 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                               ),
                             ),
                             FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                _model.selectedLatitude = [];
+                                _model.selectedLongitude = [];
+                                _model.selectedCheckbox = [];
+                                safeSetState(() {});
+                                FFAppState().selectedDestinations = [];
+                                safeSetState(() {});
+                                _model.forceRefresh = true;
+                                safeSetState(() {});
+                                await Future.delayed(
+                                    const Duration(milliseconds: 50));
+                                _model.forceRefresh = false;
+                                safeSetState(() {});
                               },
                               text: 'Clear',
                               icon: Icon(
@@ -660,7 +709,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                 shape: BoxShape.rectangle,
                               ),
                               child: Visibility(
-                                visible: _model.forceRefresh,
+                                visible: !_model.forceRefresh,
                                 child: Container(
                                   width: 349.0,
                                   height: 399.0,
@@ -670,11 +719,11 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                     accessToken:
                                         'pk.eyJ1IjoibWFqaWtvMjciLCJhIjoiY202MDVtNzZkMDhpYzJsc2YzcTZqNGtlZCJ9.idit4MwHQlrbp2LSMPOz_A',
                                     startingZoom: 7.0,
-                                    points: FFAppState().destinations,
                                     startingPoint: FFAppState().currentLocation,
                                     currentLocation: _model.currentLocation,
                                     selectedLatitude: _model.selectedLatitude,
                                     selectedLongitude: _model.selectedLongitude,
+                                    routePolyline: _model.routePolyline,
                                   ),
                                 ),
                               ),

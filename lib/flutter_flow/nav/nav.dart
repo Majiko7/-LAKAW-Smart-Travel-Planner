@@ -113,7 +113,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: RouteOptimizationWidget.routeName,
           path: RouteOptimizationWidget.routePath,
-          builder: (context, params) => RouteOptimizationWidget(),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: RouteOptimizationWidget(),
+          ),
         ),
         FFRoute(
           name: HomePageWidget.routeName,
@@ -133,38 +136,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: DestinationDetailsWidget.routeName,
           path: DestinationDetailsWidget.routePath,
-          builder: (context, params) => DestinationDetailsWidget(
-            name: params.getParam(
-              'name',
-              ParamType.String,
-            ),
-            municipalCity: params.getParam(
-              'municipalCity',
-              ParamType.String,
-            ),
-            barangay: params.getParam(
-              'barangay',
-              ParamType.String,
-            ),
-            closing: params.getParam(
-              'closing',
-              ParamType.String,
-            ),
-            image: params.getParam(
-              'image',
-              ParamType.String,
-            ),
-            opening: params.getParam(
-              'opening',
-              ParamType.String,
-            ),
-            description: params.getParam(
-              'description',
-              ParamType.String,
-            ),
-            rating: params.getParam(
-              'rating',
-              ParamType.String,
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: DestinationDetailsWidget(
+              name: params.getParam(
+                'name',
+                ParamType.String,
+              ),
+              municipalCity: params.getParam(
+                'municipalCity',
+                ParamType.String,
+              ),
+              barangay: params.getParam(
+                'barangay',
+                ParamType.String,
+              ),
+              closing: params.getParam(
+                'closing',
+                ParamType.String,
+              ),
+              image: params.getParam(
+                'image',
+                ParamType.String,
+              ),
+              opening: params.getParam(
+                'opening',
+                ParamType.String,
+              ),
+              description: params.getParam(
+                'description',
+                ParamType.String,
+              ),
+              rating: params.getParam(
+                'rating',
+                ParamType.String,
+              ),
             ),
           ),
         ),
@@ -212,6 +218,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             content: params.getParam(
               'content',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: DestinationCategoryWidget.routeName,
+          path: DestinationCategoryWidget.routePath,
+          builder: (context, params) => DestinationCategoryWidget(
+            category: params.getParam(
+              'category',
               ParamType.String,
             ),
           ),

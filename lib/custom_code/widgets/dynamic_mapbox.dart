@@ -18,24 +18,25 @@ class DynamicMapbox extends StatefulWidget {
     super.key,
     this.width,
     this.height,
-    this.points,
     required this.accessToken,
     this.startingPoint,
     required this.startingZoom,
     this.currentLocation,
     required this.selectedLatitude,
     required this.selectedLongitude,
+    this.routePolyline, // ✅ Modified: Ensure JSON format
   });
 
   final double? width;
   final double? height;
-  final List<LatLng>? points;
   final String accessToken;
   final LatLng? startingPoint;
   final double startingZoom;
   final LatLng? currentLocation;
   final List<double> selectedLatitude;
   final List<double> selectedLongitude;
+  final List<dynamic>?
+      routePolyline; // ✅ FIXED: Using `List<dynamic>` to match JSON format
 
   @override
   State<DynamicMapbox> createState() => _DynamicMapboxWidgetState();
@@ -43,28 +44,33 @@ class DynamicMapbox extends StatefulWidget {
 
 class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
   List<Marker> allMarkers = [];
+  List<Polyline> routePolylines = [];
   late MapController mapController;
 
   @override
   void initState() {
     super.initState();
     mapController = MapController();
-    refreshMarkers(); // Call this once when the widget initializes
+    refreshMapElements();
   }
 
-  void refreshMarkers() {
-    print("🔥 Refreshing markers with:");
+  /// ✅ **Refresh Markers & Polyline on Map**
+  void refreshMapElements() {
+    print("🔥 Refreshing map elements...");
     print("📌 Selected Latitudes: ${widget.selectedLatitude}");
     print("📌 Selected Longitudes: ${widget.selectedLongitude}");
+    print("📌 Route Polyline Data: ${widget.routePolyline}");
 
     List<Marker> markers = [];
 
-    // Add BLUE marker for the current location
+    // ✅ Ensure blue marker (current location) is added first
     if (widget.currentLocation != null) {
       markers.add(
         Marker(
-          point: ll.LatLng(widget.currentLocation!.latitude,
-              widget.currentLocation!.longitude),
+          point: ll.LatLng(
+            widget.currentLocation!.latitude,
+            widget.currentLocation!.longitude,
+          ),
           width: 40,
           height: 40,
           child: const Icon(Icons.location_pin, color: Colors.blue, size: 40),
@@ -72,7 +78,7 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
       );
     }
 
-    // Add RED markers for selected locations
+    // ✅ Add red markers for selected destinations
     for (int i = 0; i < widget.selectedLatitude.length; i++) {
       double lat = widget.selectedLatitude[i];
       double lon = widget.selectedLongitude[i];
@@ -89,10 +95,49 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
       }
     }
 
-    setState(() {
-      allMarkers = markers;
-      print("✅ Markers Updated! Total markers: ${allMarkers.length}");
-    });
+    // ✅ Convert `routePolyline` from JSON format (`List<dynamic>`) to `List<ll.LatLng>`
+    List<ll.LatLng> polylinePoints = [];
+    if (widget.routePolyline != null) {
+      for (var point in widget.routePolyline!) {
+        if (point is Map<String, dynamic> &&
+            point.containsKey("lat") &&
+            point.containsKey("lng")) {
+          try {
+            double lat =
+                (point["lat"] as num).toDouble(); // Ensure it's a double
+            double lng = (point["lng"] as num).toDouble();
+            polylinePoints.add(ll.LatLng(lat, lng));
+          } catch (e) {
+            print("⚠️ Error parsing polyline point: $e");
+          }
+        }
+      }
+    }
+
+    // ✅ Ensure polyline starts from blue marker (current location)
+    if (widget.currentLocation != null && polylinePoints.isNotEmpty) {
+      polylinePoints.insert(
+          0,
+          ll.LatLng(widget.currentLocation!.latitude,
+              widget.currentLocation!.longitude));
+    }
+
+    // ✅ Update markers & polyline **only if changed**
+    if (mounted) {
+      setState(() {
+        allMarkers = markers;
+        routePolylines = [
+          if (polylinePoints.isNotEmpty)
+            Polyline(
+              points: polylinePoints,
+              strokeWidth: 4.0,
+              color: Colors.blue, // ✅ Route color
+            )
+        ];
+        print("✅ Markers Updated! Total markers: ${allMarkers.length}");
+        print("🔵 Polyline Updated! Points: ${polylinePoints.length}");
+      });
+    }
   }
 
   @override
@@ -100,9 +145,10 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
     super.didUpdateWidget(oldWidget);
 
     if (widget.selectedLatitude != oldWidget.selectedLatitude ||
-        widget.selectedLongitude != oldWidget.selectedLongitude) {
-      print("🔄 Widget Updated! Rebuilding Markers...");
-      refreshMarkers();
+        widget.selectedLongitude != oldWidget.selectedLongitude ||
+        widget.routePolyline != oldWidget.routePolyline) {
+      print("🔄 Widget Updated! Refreshing Map...");
+      refreshMapElements();
     }
   }
 
@@ -131,8 +177,11 @@ class _DynamicMapboxWidgetState extends State<DynamicMapbox> {
               'accessToken': widget.accessToken,
             },
           ),
+          PolylineLayer(
+            polylines: routePolylines, // ✅ FIXED: Display computed route
+          ),
           MarkerLayer(
-            markers: allMarkers,
+            markers: allMarkers, // ✅ Display all markers
           ),
         ],
       ),

@@ -10,6 +10,7 @@ import 'auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
 
 void main() async {
@@ -132,78 +133,157 @@ class _NavBarPageState extends State<NavBarPage> {
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
+    final MediaQueryData queryData = MediaQuery.of(context);
+
     return Scaffold(
-      body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: BottomNavigationBar(
+      body: MediaQuery(
+          data: queryData
+              .removeViewInsets(removeBottom: true)
+              .removeViewPadding(removeBottom: true),
+          child: _currentPage ?? tabs[_currentPageName]!),
+      extendBody: true,
+      bottomNavigationBar: FloatingNavbar(
         currentIndex: currentIndex,
         onTap: (i) => safeSetState(() {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        selectedItemColor: FlutterFlowTheme.of(context).secondary,
-        unselectedItemColor: FlutterFlowTheme.of(context).secondary,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 24.0,
+        backgroundColor: FlutterFlowTheme.of(context).secondary,
+        selectedItemColor: FlutterFlowTheme.of(context).secondaryBackground,
+        unselectedItemColor: FlutterFlowTheme.of(context).secondaryBackground,
+        selectedBackgroundColor: Color(0x00000000),
+        borderRadius: 8.0,
+        itemBorderRadius: 8.0,
+        margin: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(0.0),
+        width: double.infinity,
+        elevation: 0.0,
+        items: [
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 0 ? Icons.home : Icons.home_outlined,
+                  color: currentIndex == 0
+                      ? FlutterFlowTheme.of(context).secondaryBackground
+                      : FlutterFlowTheme.of(context).secondaryBackground,
+                  size: currentIndex == 0 ? 24.0 : 24.0,
+                ),
+                Text(
+                  'Home',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 0
+                        ? FlutterFlowTheme.of(context).secondaryBackground
+                        : FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.home,
-              size: 24.0,
-            ),
-            label: 'Home',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.map_outlined,
-              size: 24.0,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 1 ? Icons.map_sharp : Icons.map_outlined,
+                  color: currentIndex == 1
+                      ? FlutterFlowTheme.of(context).secondaryBackground
+                      : FlutterFlowTheme.of(context).secondaryBackground,
+                  size: currentIndex == 1 ? 24.0 : 24.0,
+                ),
+                Text(
+                  'Destinations',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 1
+                        ? FlutterFlowTheme.of(context).secondaryBackground
+                        : FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.map_sharp,
-              size: 24.0,
-            ),
-            label: 'Destinations',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add_circle_outline,
-              size: 24.0,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 2
+                      ? Icons.add_circle
+                      : Icons.add_circle_outline,
+                  color: currentIndex == 2
+                      ? FlutterFlowTheme.of(context).secondaryBackground
+                      : FlutterFlowTheme.of(context).secondaryBackground,
+                  size: currentIndex == 2 ? 24.0 : 24.0,
+                ),
+                Text(
+                  'Add',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 2
+                        ? FlutterFlowTheme.of(context).secondaryBackground
+                        : FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.add_circle,
-              size: 24.0,
-            ),
-            label: 'Add',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.bookmarks_outlined,
-              size: 24.0,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 3
+                      ? Icons.bookmarks_rounded
+                      : Icons.bookmarks_outlined,
+                  color: currentIndex == 3
+                      ? FlutterFlowTheme.of(context).secondaryBackground
+                      : FlutterFlowTheme.of(context).secondaryBackground,
+                  size: currentIndex == 3 ? 24.0 : 24.0,
+                ),
+                Text(
+                  'Itineraries',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 3
+                        ? FlutterFlowTheme.of(context).secondaryBackground
+                        : FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.bookmarks_rounded,
-              size: 24.0,
-            ),
-            label: 'Itineraries',
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.settings_outlined,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 4
+                      ? Icons.settings_sharp
+                      : Icons.settings_outlined,
+                  color: currentIndex == 4
+                      ? FlutterFlowTheme.of(context).secondaryBackground
+                      : FlutterFlowTheme.of(context).secondaryBackground,
+                  size: currentIndex == 4 ? 24.0 : 24.0,
+                ),
+                Text(
+                  'Settings',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 4
+                        ? FlutterFlowTheme.of(context).secondaryBackground
+                        : FlutterFlowTheme.of(context).secondaryBackground,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
             ),
-            activeIcon: Icon(
-              Icons.settings_sharp,
-            ),
-            label: 'Settings',
-            tooltip: '',
           )
         ],
       ),

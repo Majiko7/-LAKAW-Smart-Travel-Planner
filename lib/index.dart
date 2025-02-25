@@ -14,3 +14,5 @@ export '/pages/saved_itinerary/saved_itinerary_widget.dart'
     show SavedItineraryWidget;
 export '/pages/settings/settings_widget.dart' show SettingsWidget;
 export '/pages/travel_guide/travel_guide_widget.dart' show TravelGuideWidget;
+export '/pages/destination_category/destination_category_widget.dart'
+    show DestinationCategoryWidget;

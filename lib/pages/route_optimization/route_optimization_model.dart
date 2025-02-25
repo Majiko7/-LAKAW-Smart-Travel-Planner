@@ -30,6 +30,26 @@ class RouteOptimizationModel extends FlutterFlowModel<RouteOptimizationWidget> {
 
   bool forceRefresh = false;
 
+  List<bool> selectedCheckbox = [];
+  void addToSelectedCheckbox(bool item) => selectedCheckbox.add(item);
+  void removeFromSelectedCheckbox(bool item) => selectedCheckbox.remove(item);
+  void removeAtIndexFromSelectedCheckbox(int index) =>
+      selectedCheckbox.removeAt(index);
+  void insertAtIndexInSelectedCheckbox(int index, bool item) =>
+      selectedCheckbox.insert(index, item);
+  void updateSelectedCheckboxAtIndex(int index, Function(bool) updateFn) =>
+      selectedCheckbox[index] = updateFn(selectedCheckbox[index]);
+
+  List<dynamic> routePolyline = [];
+  void addToRoutePolyline(dynamic item) => routePolyline.add(item);
+  void removeFromRoutePolyline(dynamic item) => routePolyline.remove(item);
+  void removeAtIndexFromRoutePolyline(int index) =>
+      routePolyline.removeAt(index);
+  void insertAtIndexInRoutePolyline(int index, dynamic item) =>
+      routePolyline.insert(index, item);
+  void updateRoutePolylineAtIndex(int index, Function(dynamic) updateFn) =>
+      routePolyline[index] = updateFn(routePolyline[index]);
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getCurrentLocation] action in RouteOptimization widget.
@@ -38,6 +58,9 @@ class RouteOptimizationModel extends FlutterFlowModel<RouteOptimizationWidget> {
   Map<DestinationsRow, bool> checkboxValueMap = {};
   List<DestinationsRow> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+
+  // Stores action output result for [Custom Action - combineLatLng] action in CalculateRoute widget.
+  List<dynamic>? coordinatesJson;
 
   @override
   void initState(BuildContext context) {}
