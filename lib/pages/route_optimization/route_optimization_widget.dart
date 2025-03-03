@@ -608,7 +608,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
-                                width: 200.0,
+                                width: MediaQuery.sizeOf(context).width * 0.5,
                                 height: 50.0,
                                 padding: EdgeInsets.all(8.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -653,7 +653,7 @@ class _RouteOptimizationWidgetState extends State<RouteOptimizationWidget> {
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
-                                width: 120.0,
+                                width: MediaQuery.sizeOf(context).width * 0.35,
                                 height: 50.0,
                                 padding: EdgeInsets.all(8.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(

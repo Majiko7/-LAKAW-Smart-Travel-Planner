@@ -1072,171 +1072,109 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     Container(
                                       width: 70.0,
                                       decoration: BoxDecoration(),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            DestinationCategoryWidget.routeName,
-                                            queryParameters: {
-                                              'category': serializeParam(
-                                                '',
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                          );
-                                        },
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Stack(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              children: [
-                                                Container(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                    shape: BoxShape.circle,
-                                                  ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Stack(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            children: [
+                                              Container(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
+                                                  shape: BoxShape.circle,
                                                 ),
-                                                Icon(
-                                                  Icons.dinner_dining,
+                                              ),
+                                              Icon(
+                                                Icons.dinner_dining,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 30.0,
+                                              ),
+                                            ],
+                                          ),
+                                          Text(
+                                            'Dining',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
-                                                  size: 30.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
-                                              ],
-                                            ),
-                                            Text(
-                                              'Dining',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMediumFamily,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    useGoogleFonts: GoogleFonts
-                                                            .asMap()
-                                                        .containsKey(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily),
-                                                  ),
-                                            ),
-                                          ].divide(SizedBox(height: 5.0)),
-                                        ),
+                                          ),
+                                        ].divide(SizedBox(height: 5.0)),
                                       ),
                                     ),
                                     Container(
                                       width: 70.0,
                                       decoration: BoxDecoration(),
-                                      child:
-                                          FutureBuilder<List<DestinationsRow>>(
-                                        future:
-                                            DestinationsTable().querySingleRow(
-                                          queryFn: (q) => q.ilike(
-                                            'category',
-                                            'adventure',
-                                          ),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Stack(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            children: [
+                                              Container(
                                                 width: 50.0,
                                                 height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                  ),
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
+                                                  shape: BoxShape.circle,
                                                 ),
                                               ),
-                                            );
-                                          }
-                                          List<DestinationsRow>
-                                              columnDestinationsRowList =
-                                              snapshot.data!;
-
-                                          final columnDestinationsRow =
-                                              columnDestinationsRowList
-                                                      .isNotEmpty
-                                                  ? columnDestinationsRowList
-                                                      .first
-                                                  : null;
-
-                                          return Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Stack(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                children: [
-                                                  Container(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    decoration: BoxDecoration(
-                                                      color:
+                                              Icon(
+                                                Icons.hiking_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 30.0,
+                                              ),
+                                            ],
+                                          ),
+                                          Text(
+                                            'Adventure',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .alternate,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                  ),
-                                                  Icon(
-                                                    Icons.hiking_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    size: 30.0,
-                                                  ),
-                                                ],
-                                              ),
-                                              Text(
-                                                'Adventure',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily),
-                                                        ),
-                                              ),
-                                            ].divide(SizedBox(height: 5.0)),
-                                          );
-                                        },
+                                                              .labelMediumFamily),
+                                                ),
+                                          ),
+                                        ].divide(SizedBox(height: 5.0)),
                                       ),
                                     ),
                                     Container(
